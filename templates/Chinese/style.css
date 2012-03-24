@@ -1,0 +1,122 @@
+body {
+  font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+  font-size: 13px;
+  background-color: #F8F8FF;
+  color: #000000;
+}
+
+table, tr, td, th {
+  font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+  font-size: 15px;
+  align: center;
+}
+
+.list_table {
+  align: center;
+  border-collapse: collapse;
+  border: 1px solid #888888;
+}
+
+.list_table td {
+  padding: 5px;
+  border-collapse: collapse;
+  border: 1px solid #888888;
+}
+
+.bordered_table {
+  font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+  font-size: 13px;
+  align: center;
+  border-color: #bdbdbd;
+  border-style: solid;
+  border-top-width: 1;
+  border-bottom-width: 1;
+  border-right-width: 1;
+  border-left-width: 1;
+  background-color: #F9F9F9;
+}
+
+.grayboxheader {
+  font-family: Verdana, Arial, Helvetica, sans-serif;
+  font-weight: bold;
+  color: #7E7D7E;
+  text-align: center;
+}
+
+.whitebox {
+  font-family: Verdana, Arial, Helvetica, sans-serif;
+  font-size: 13px;
+  font-weight: bold;
+  color: #000000;
+  background-color: #FFFFFF;  
+}
+
+.indented_cell {
+  font-family: Verdana, Arial, Helvetica, sans-serif;
+  margin-left: 15px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.copyright {
+  font-family: Verdana, Arial, Helvetica, sans-serif;
+  font-size: x13px;
+  color: #000000;
+  text-align: center;
+}
+
+//.example {font-size:smaller; font-style:italic; font-weight:normal;}
+.example {font-size:smaller; color:#778888; font-weight:normal;}
+.message {color:blue; font-weight:bold; text-align:center}
+//.error {color:red; font-weight:bold; text-align:center}
+
+
+.grayboxfont {
+  font-family: Verdana, Arial, Helvetica, sans-serif;
+  font-size: 13px;
+  font-weight: normal;
+  color: #424142;
+}
+
+.question {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 13px;
+  font-weight: bold;
+  color: #262C4C;
+}
+
+.percentage {
+  font-family: Verdana, Arial, Helvetica, sans-serif;
+  font-size: 13px;
+  font-weight: normal;
+  color: #000000;
+}
+
+.error {
+  font-family: Verdana, Arial, Helvetica, sans-serif;
+  font-size: 13px;
+  font-weight: bold;
+  text-align: center;
+  color: #CB0404;
+}
+
+a:link {
+  text-decoration:none;
+  color: black;
+}
+a:visited {
+  text-decoration:none;
+  color: #AAAAAA;
+}
+a:hover {
+  text-decoration:underline;
+  color: #666666;
+}
+
+.regionheader {
+  font-size: 15px;
+  font-weight: bold;
+  text-align: center;
+  background-color: #FFFF55;
+  color: #5555FF;
+}
