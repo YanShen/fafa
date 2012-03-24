@@ -15,7 +15,8 @@
       <div class="whitebox">活動名稱 <a href="{$conf.html}/docs/index.html#ep_name">[?]</a></div>
 
       <div class="indented_cell">
-        <input type="text" name="name" value="{$data.name}" size="50">
+        <input type="text" name="name" value="{$data.name}" size="50"> <br>
+         範例:<span style="color:red">[</span>台北<span style="color:red">]</span> 清潔用品座談會<span style="color:red">-</span>車馬費2000(N-4/9)
       </div>
 
       <div class="whitebox">讀取密碼</div>

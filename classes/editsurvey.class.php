@@ -808,11 +808,18 @@ class UCCASS_EditSurvey extends UCCASS_Main
             
             //by Yan. if mail_subject is empty, extract string from survey.name.
             if(empty($r['mail_subject'])) {
-            	$aa=preg_split("/[\],\$]/", $r['name'] );
-            	if(sizeOf($aa)<=1) {
-            		$this->data['mail_subject'] = $aa[0];
-            	} else {
-            		$this->data['mail_subject'] = $aa[1];
+            	$splitRegEx = "";
+            	
+            	if( strstr($r['name'], '$') )
+            	  $splitRegEx = "/[\],\$]/";
+            	else
+            	  $splitRegEx = "/[\],\-]/";
+            	
+            	$aa=preg_split($splitRegEx, $r['name'] );
+            	if(sizeOf($aa)<=1) { 
+            		$this->data['mail_subject'] = "[報名]".$aa[0];
+            	} else { 
+            		$this->data['mail_subject'] = "[報名]".$aa[1];
             	}
             } else {
             	$this->data['mail_subject'] = $this->SfStr->getSafeString($r['mail_subject'],SAFE_STRING_TEXT);
