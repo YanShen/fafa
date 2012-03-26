@@ -12,6 +12,7 @@
 
 <td>
 
+<!-- Site Search Google
 <table class="bordered_table" width="100%" align="center" cellpadding="0" cellspacing="0">
   <tr><td>
   <table width="100%" bgcolor="white" border="0"><tr>
@@ -23,8 +24,6 @@
      <td align="right"> 
        <div align="left">尋找您感興趣的活動</div>
        
-       
-<!-- SiteSearch Google -->
 <form method="get" action="http://www.google.com/custom" target="google_window" style="display: inline">
 <table border="0" bgcolor="#ffffff">
 <tr><td nowrap="nowrap" valign="top" align="left" height="32">
@@ -37,6 +36,7 @@
 <label for="sbb" style="display: none">提交搜尋表單</label>
 <input type="submit" name="sa" value="Google 搜尋" id="sbb"></input>
 </td></tr>
+
 <tr>
 <td>&nbsp;</td>
 <td nowrap="nowrap">
@@ -59,25 +59,20 @@
 <input type="hidden" name="hl" value="zh-TW"></input>
 </td></tr></table>
 </form>
-<!-- SiteSearch Google -->
 
-<div align="left">
-<!-- 推薦 -->
-
-<!-- 推薦 -->
-</div>
       </td> 
      </tr>
     </table>
    </td>
   </tr>
 </table>
+Site Search Google -->
 
 <form method="POST" action="survey.php" style="display: inline">
   <input type="hidden" name="sid" value="{$survey.sid}">
 <table class="bordered_table" width="100%" align="center" cellpadding="0" cellspacing="0">      
   <tr class="whitebox">
-    <td class="whitebox" style="text-align:center;background-color:#EEEEFF">{$survey.name}</td>
+    <td class="div_title">{$survey.name}</td>
   </tr>
     <tr>
       <td>
@@ -94,9 +89,11 @@
 
         {*NUMBER OF PAGES*}
         {section name="page" loop=1 show=$show.page_num}
-          <div>
-            第 {$survey.page} of {$survey.total_pages} 頁
-          </div>
+	      {if $survey.total_pages <> 1}
+            <div >
+              第 {$survey.page} of {$survey.total_pages} 頁
+            </div>
+		  {/if}
         {/section}
 
         {*TIME LIMIT*}
@@ -113,7 +110,9 @@
 
         {*QUESTIONS*}
         {section name="question" loop=1 show=$show.question|default:FALSE}
-          <div style="font-size:11pt">{$question_text}</div>
+          <div style="font-size:11pt">
+		  {$question_text}
+		  </div>
           <table width="100%">
             <tr><td class="whitebox">驗證碼-請輸入下圖之文字
             </td></tr>

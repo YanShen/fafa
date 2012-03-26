@@ -7,7 +7,8 @@ body {
 
 table, tr, td, th {
   font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
-  font-size: 15px;
+  font-size: 13px;
+  padding: 2px;
   align: center;
 }
 
@@ -45,7 +46,7 @@ table, tr, td, th {
 
 .whitebox {
   font-family: Verdana, Arial, Helvetica, sans-serif;
-  font-size: 13px;
+  font-size: 15px;
   font-weight: bold;
   color: #000000;
   background-color: #FFFFFF;  
@@ -66,7 +67,8 @@ table, tr, td, th {
 }
 
 //.example {font-size:smaller; font-style:italic; font-weight:normal;}
-.example {font-size:smaller; color:#778888; font-weight:normal;}
+.example {font-size:11px; color:#778888; font-weight:normal;}
+.survey_desc {font-size:13px; fontt-weight:normal; margin-left: 15px;}
 .message {color:blue; font-weight:bold; text-align:center}
 //.error {color:red; font-weight:bold; text-align:center}
 
@@ -106,11 +108,11 @@ a:link {
 }
 a:visited {
   text-decoration:none;
-  color: #AAAAAA;
+  color: #777777;
 }
 a:hover {
   text-decoration:underline;
-  color: #666666;
+  color: #333333;
 }
 
 .regionheader {
@@ -119,4 +121,29 @@ a:hover {
   text-align: center;
   background-color: #FFFF55;
   color: #5555FF;
+}
+
+.div_title{
+  font-size: 16px;
+  font-weight: bold;
+  text-align:center;
+  background-color:#EEEEFF
+}
+
+.menulayout {
+  float: left;
+  width: 150px;
+  padding: 5px;
+  border-color: #bdbdbd;
+  border-style: solid;
+  border-top-width: 1;
+  border-bottom-width: 1;
+  border-right-width: 1;
+  border-left-width: 1;  
+}
+
+.menuitem {
+  font-size:16px;
+  line-height:150%;
+  color: #555599;
 }

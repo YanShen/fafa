@@ -138,6 +138,112 @@ class UCCASS_Survey extends UCCASS_Main
         return $retval;
     }
 
+	function get_latest_modify_date()
+	{
+	    $query = "SELECT last_modify_date FROM {$this->CONF['db_tbl_prefix']}surveys WHERE display_state= 1 and hidden=0 ORDER BY last_modify_date DESC limit 1";
+echo $query."<br>";
+        $rs = $this->Query($query, '找不到活動存取設定的資訊 ');
+        $r = $rs->FetchRow();
+echo "last_modify_date=".$r["last_modify_date"]."<br>";
+		if(!r) return date();
+		return $r["last_modify_date"];
+	}
+	
+    /********************
+    * LATEST SURVEYS *
+    ********************/
+    //function latest_surveys()
+    function latest_surveys($tplName)
+    {
+	    $withinDays = 21;
+		
+   		//Added by yan.
+  		if(! isset($tplName) ) {
+   			$tplName = 'latest_surveys.tpl';
+   		}
+    	
+        if(isset($_REQUEST['action']) && $_REQUEST['action'] == 'logout')
+        {
+            if(isset($_SESSION['priv']))
+            { unset($_SESSION['priv']); }
+        }
+
+        $survey = array();
+
+        $x = array(0, 0, 0, 0, 0, 0);         
+        $y = 0;
+        $now = time();
+
+        //Turn on/off surveys depending on start/end date
+        $rs = $this->Query("UPDATE {$this->CONF['db_tbl_prefix']}surveys SET active = 1 WHERE start_date != 0 AND (start_date < $now) OR (start_date < $now AND $now < end_date)");
+        $rs = $this->Query("UPDATE {$this->CONF['db_tbl_prefix']}surveys SET active = 0 WHERE end_date != 0 AND ($now < start_date OR $now > end_date)");
+
+		$lastModifyDate = ($this->get_latest_modify_date()) - 60 * 60 * 24 * $withinDays;
+echo "lastModifyDate=".$lastModifyDate."<br>";		
+        $query = "SELECT sid, name, start_date, end_date, active, survey_text_mode, display_state, on_top, created, last_modify_date FROM {$this->CONF['db_tbl_prefix']}surveys WHERE display_state= 1 and hidden=0 and last_modify_date >= ${lastModifyDate} ORDER BY region, last_modify_date DESC";
+echo $query;
+        $rs = $this->Query($query, '找不到活動存取設定的資訊 ');
+        
+        while($r = $rs->FetchRow())
+        {
+            $survey_name = $this->SfStr->getSafeString($r['name'],$r['survey_text_mode']);
+            //remove the content inside the last ()
+            $survey_name = $this->removeLastBarrels($survey_name);
+            $changeDate=$this->toDate($r['last_modify_date']);
+			$createDate=$this->toDate($r['created']);
+			$createOrUpdate = ($createDate == $changeDate) ? "create":"update" ;
+			
+			$xIndex = $createDate . "." .$createOrUpdate;
+			
+            if($r['active'] == 1)
+            {
+                $survey['public'][$changeDate][$createOrUpdate][$x[$xIndex]]['display'] = $survey_name;
+                $survey['public'][$changeDate][$createOrUpdate][$x[$xIndex]]['sid'] = $r['sid'];
+                $survey['public'][$changeDate][$createOrUpdate][$x[$xIndex]]['createdWithinOneDay'] = (time() - $r['created']) < 60 * 60 * 24;
+                $survey['public'][$changeDate][$createOrUpdate][$x[$xIndex]]['updatedWithinOneDay'] = (time() - $r['last_modify_date']) < 60 * 60 * 24;
+                $survey['public'][$changeDate][$createOrUpdate][$x[$xIndex]]['on_top'] = $r['on_top'];
+                $survey['public'][$changeDate][$createOrUpdate][$x[$xIndex]]['region'] = $r['region'];
+                $survey['public'][$changeDate][$createOrUpdate][$x[$xIndex]]['start_date'] = $this->toDate($r['start_date']);
+                $survey['public'][$changeDate][$createOrUpdate][$x[$xIndex]]['end_date'] = $this->toDate($r['end_date']);
+                
+                //testing code 
+                echo "changeDate=".$changeDate." createOrUpdate=".$createOrUpdate." x[".$xIndex."]=".$x[$xIndex]." ".$survey['public'][$changeDate][$createOrUpdate][$x[$xIndex]]['display']."<br>" ;
+                $x[$xIndex] = $x[$xIndex]+1;
+				}
+        } 
+        //testing code for list all surveys.
+        for($i=0; $i<=5; $i++) {
+           for($j=0; $j<count($survey['public'][$i]); $j++) {
+		     for($k=0; $k<count($survey['public'][$i][$j]); $k++) {
+               echo "i=".$i." j=".$j." k=".$k." ".$survey['public'][$i][$j][$k]['display']."<br>" ;
+			 }
+           }
+        }
+        
+        if(isset($_SESSION['priv']))
+        { $show['logout'] = TRUE; }
+        else
+        { $show['logout'] = FALSE; }
+
+        if(!$this->CONF['create_access'] || $this->_hasPriv(CREATE_PRIV))
+        { $show['create_survey'] = TRUE; }
+        else
+        { $show['create_survey'] = FALSE; }
+
+        $this->smarty->assign_by_ref('show',$show);
+
+        if(isset($survey) && count($survey) > 0)
+        { $this->smarty->assign_by_ref("survey",$survey); }
+        
+        if(isset($x) && count($x) > 0)
+        { $this->smarty->assign_by_ref("regionCountX", $x); }
+
+        $retval = $this->smarty->fetch($this->template.'/'.$tplName);
+
+        return $retval;
+    }
+	
+	
 		//activeType 分 1:active; 0:inactive; -1:all
     function active_surveys($tplName, $activeType)
     {

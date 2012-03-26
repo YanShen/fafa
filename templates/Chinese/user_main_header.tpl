@@ -17,26 +17,37 @@
     </script>
   </head>
   <body background="{$conf.images_html}/" onload="changePageTitle()">
-<div align="center">
-<table>
-<tr><td style="background-color:white">
-  <script type="text/javascript" src="http://static.ak.connect.facebook.com/js/api_lib/v0.4/FeatureLoader.js.php/zh_TW"></script><script type="text/javascript">FB.init("7ede6f37ec0661d2ab19caf4307cae6a");</script><fb:fan profile_id="189681154397" stream="" connections="" width="300"></fb:fan><div style="font-size:8px; padding-left:10px"><a href="http://www.facebook.com/pages/wo-ai-fa-fa-shi-diao-huo-dong-wang/189681154397"> 我愛發發－市調活動網在 Facebook 上</a> </div>
-</td>
-<td style="background-color:yellow;text-align:center">
-  <a name="fb_share" type="icon_link" href="http://www.facebook.com/sharer.php">$$按我~分享賺錢機會$$<br>*\(^o^)/*\(^o^)/*<br><b>*\(^o^)/*\(^o^)/*</b></a><script src="http://static.ak.fbcdn.net/connect.php/js/FB.Share" type="text/javascript"></script>
-  
-</td>
-<td>
-<!--email cache banner -->
-<A HREF="http://www.emailcash.com.tw/join.asp?refer=guly" target=_blank>
-<IMG SRC="http://www.emailcash.com.tw/img/refer_14060.gif"BORDER=0></A>
-<!--email cache-->
+<div class="menulayout">
+  <div class="div_title menuitem">功能表</div>
+  <div><a href="latest_surveys.php"><li class="menuitem">最新活動</li></a></div>
+  <div><a href="available_surveys.php"><li class="menuitem">全部活動</li></a></div>
+  <div><a href="announcement.php"><li class="menuitem">注意事項</li></a></div>
+  <div><a href="http://www.facebook.com/5ifafa88"><li class="menuitem">粉絲團</li></a></div>
+  <div><a href="http://hk.groups.yahoo.com/group/MONEY_MONEY/join"><li class="menuitem">訂閱電子報</li></a></div>
+  <hr/>
+  <div align="center">
 
-</td>
-</tr>
-</table>
+    <div>
+	<!-- Facebook Badge START --><a href="http://www.facebook.com/5ifafa88" target="_TOP" style="font-family: &quot;lucida grande&quot;,tahoma,verdana,arial,sans-serif; font-size: 11px; font-variant: normal; font-style: normal; font-weight: normal; color: #3B5998; text-decoration: none;" title="我愛發發－市調活動網">我愛發發－市調活動網</a><br/><a href="http://www.facebook.com/5ifafa88" target="_TOP" title="我愛發發－市調活動網"><img src="http://badge.facebook.com/badge/189681154397.3014.603890911.png" style="border: 0px;" /></a><br/><!-- Facebook Badge END -->
+	</div>
+  
+    <div style="text-align:center;background-color:yellow"><a style="font-size:13px" name="fb_share" type="icon_link" href="http://www.facebook.com/sharer.php">分享賺錢機會<br>*\(^o^)/*</a><script src="http://static.ak.fbcdn.net/connect.php/js/FB.Share" type="text/javascript"></script> </div>
+      
+    <!--email cache banner -->
+	<div>
+      <A HREF="http://www.emailcash.com.tw/join.asp?refer=guly" target=_blank>
+      <IMG SRC="http://www.emailcash.com.tw/img/refer_14060.gif"BORDER=0></A>
+	</div>
+    <!--email cache-->
+    
+    </td>
+    </tr>
+    </table>
+  </div>
+    
 </div>
 <!--  <div id="pageTitle" name="pageTitle" style="font-size:24; font-weight:bold; text-align:center; display:non"> </div> -->
-    
+        
 <!-- MAIN CONTENT AREA -->
-
+    
+    

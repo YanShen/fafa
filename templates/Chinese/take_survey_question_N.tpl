@@ -1,8 +1,7 @@
-﻿<div class="whitebox" style="float:right;"> 
-<!-- 贊助商連結<br> -->
-
+﻿<div class="whitebox"> 
+說明
 </div>
-<div class="whitebox">
+<div class="survey_desc">
   {$q.required_text} {$q.question}
 </div>
 

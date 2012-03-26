@@ -15,5 +15,8 @@
     </script>
   </head>
   <body background="{$conf.images_html}/" onload="if(changePageTitle)changePageTitle();">
+  <div class="menulayout">
+  Menu
+  </div>
 <!-- MAIN CONTENT AREA -->
 
