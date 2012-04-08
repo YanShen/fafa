@@ -7,7 +7,7 @@ body {
 
 table, tr, td, th {
   font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
-  font-size: 13px;
+  font-size: 15px;
   padding: 2px;
   align: center;
 }
@@ -15,16 +15,16 @@ table, tr, td, th {
 .list_table {
   align: center;
   border-collapse: collapse;
-  border: 1px solid #888888;
+  //border: 1px solid #888888;
 }
 
 .list_table td {
   padding: 5px;
   border-collapse: collapse;
-  border: 1px solid #888888;
+  //border: 1px solid #888888;
 }
 
-.bordered_table {
+.bordered_table0 {
   font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
   font-size: 13px;
   align: center;
@@ -49,7 +49,8 @@ table, tr, td, th {
   font-size: 15px;
   font-weight: bold;
   color: #000000;
-  background-color: #FFFFFF;  
+  background-color: #DDEEFF;
+  padding: 2px;
 }
 
 .indented_cell {
@@ -61,7 +62,7 @@ table, tr, td, th {
 
 .copyright {
   font-family: Verdana, Arial, Helvetica, sans-serif;
-  font-size: x13px;
+  font-size: 13px;
   color: #000000;
   text-align: center;
 }
@@ -115,12 +116,29 @@ a:hover {
   color: #333333;
 }
 
+/*region table*/
 .regionheader {
   font-size: 15px;
   font-weight: bold;
   text-align: center;
   background-color: #FFFF55;
   color: #5555FF;
+}
+
+.regionitemarea {
+  width: 100%;
+  margin-top: 2px;
+}
+
+.list_table2 {
+  align: center;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.list_table2 td {
+  padding: 5px;
+  border-collapse: collapse;
 }
 
 .div_title{
@@ -146,4 +164,33 @@ a:hover {
   font-size:16px;
   line-height:150%;
   color: #555599;
+}
+
+.mainarea {
+  width: 600px;
+  margin-left: 5px;
+  float:left;
+  padding: 5px;
+  border: 1px solid #888888;
+}
+
+.latest-new {
+  color:red;
+  float:left;
+  margin-left:10px;
+  text-align:right;
+}
+
+.latest-update {
+  color:blue;
+  float:left;
+  margin-left:10px;
+  text-align:right;
+}
+
+.latest-date {
+  font-size: 14px;
+  font-weight: bold;
+  background-color: #EEF5FF;
+  padding: 2px;
 }

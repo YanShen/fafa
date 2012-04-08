@@ -230,7 +230,7 @@ db_tbl_prefix =
 ; and PHP support for the htmlentities() function. Consult
 ; your MySQL and PHP documentation to see if other
 ; character sets are supported.
-charset = "UTF-8"
+charset = "UTF8"
 
 ;;;;;;;;;;;;;;;;;;;;;;;;
 ; SMARTY CONFIGURATION ;

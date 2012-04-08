@@ -73,7 +73,7 @@ function openNewListInNewBrowsers() {
         <td> {$survey.all_surveys.end_date[s]} </td>
       -->
         <td align="right">
-        {if $survey.all_surveys.withNew[s] > 0 } <span style="color=#ff0000">有新的</span>{/if}
+        {if $survey.all_surveys.withNew[s] > 0 } <span style="color:red;">有新的</span>{/if}
         <a href="{$conf.html}/latest_results_table.php?sid={$survey.all_surveys.sid[s]}">最新</a> | 
         <a href="{$conf.html}/history_results_table.php?sid={$survey.all_surveys.sid[s]}">歷程</a> | 
         <a href="{$conf.html}/post_to_yahoo_groups.php?notifyType=normal&sid={$survey.all_surveys.sid[s]}" target="_new">發佈</a>  |  

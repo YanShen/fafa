@@ -1,17 +1,4 @@
-﻿<div align="center">
-
-</div>
-
-<div style="float:left;">
-
-<table align="center" width="100%" border="0">
-<tr>
-<td valign="top"> 
-
-</td>
-
-<td>
-
+﻿<div class="mainarea">
 <!-- Site Search Google
 <table class="bordered_table" width="100%" align="center" cellpadding="0" cellspacing="0">
   <tr><td>
@@ -70,13 +57,12 @@ Site Search Google -->
 
 <form method="POST" action="survey.php" style="display: inline">
   <input type="hidden" name="sid" value="{$survey.sid}">
-<table class="bordered_table" width="100%" align="center" cellpadding="0" cellspacing="0">      
-  <tr class="whitebox">
+<table class="list_table2">      
+  <tr>
     <td class="div_title">{$survey.name}</td>
   </tr>
     <tr>
       <td>
-
         {*MESSAGE*}
         {section name="message" loop=1 show=$message}
           <div class="message">{$message}</div>
@@ -107,7 +93,8 @@ Site Search Google -->
         {section name="welcome" loop=1 show=$show.welcome|default:FALSE}
           <div style="font-size:11pt">{$survey.welcome_text}</div>
         {/section}
-
+      </td></tr>
+	  <tr><td>
         {*QUESTIONS*}
         {section name="question" loop=1 show=$show.question|default:FALSE}
           <div style="font-size:11pt">
@@ -172,21 +159,7 @@ Site Search Google -->
     </tr> 
   </table>
 </form>
-</td>
-</tr>
-
-</tr>
-
 
 <!-- Footer -->
-<tr>
-<td>
-</td>
-<td>
 
-<!--FOOTER-->
-
-</td></tr>
-</table>
-
-<div> <!-- float to left -->
+</div> <!-- float to left -->

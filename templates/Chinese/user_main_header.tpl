@@ -21,7 +21,7 @@
   <div class="div_title menuitem">功能表</div>
   <div><a href="latest_surveys.php"><li class="menuitem">最新活動</li></a></div>
   <div><a href="available_surveys.php"><li class="menuitem">全部活動</li></a></div>
-  <div><a href="announcement.php"><li class="menuitem">注意事項</li></a></div>
+  <!-- <div><a href="announcement.php"><li class="menuitem">注意事項</li></a></div> -->
   <div><a href="http://www.facebook.com/5ifafa88"><li class="menuitem">粉絲團</li></a></div>
   <div><a href="http://hk.groups.yahoo.com/group/MONEY_MONEY/join"><li class="menuitem">訂閱電子報</li></a></div>
   <hr/>
@@ -49,5 +49,3 @@
 <!--  <div id="pageTitle" name="pageTitle" style="font-size:24; font-weight:bold; text-align:center; display:non"> </div> -->
         
 <!-- MAIN CONTENT AREA -->
-    
-    

@@ -141,10 +141,10 @@ class UCCASS_Survey extends UCCASS_Main
 	function get_latest_modify_date()
 	{
 	    $query = "SELECT last_modify_date FROM {$this->CONF['db_tbl_prefix']}surveys WHERE display_state= 1 and hidden=0 ORDER BY last_modify_date DESC limit 1";
-echo $query."<br>";
+//echo $query."<br>";
         $rs = $this->Query($query, '找不到活動存取設定的資訊 ');
         $r = $rs->FetchRow();
-echo "last_modify_date=".$r["last_modify_date"]."<br>";
+//echo "last_modify_date=".$r["last_modify_date"]."<br>";
 		if(!r) return date();
 		return $r["last_modify_date"];
 	}
@@ -155,7 +155,7 @@ echo "last_modify_date=".$r["last_modify_date"]."<br>";
     //function latest_surveys()
     function latest_surveys($tplName)
     {
-	    $withinDays = 21;
+	    $withinDays = 7;
 		
    		//Added by yan.
   		if(! isset($tplName) ) {
@@ -170,7 +170,9 @@ echo "last_modify_date=".$r["last_modify_date"]."<br>";
 
         $survey = array();
 
-        $x = array(0, 0, 0, 0, 0, 0);         
+        $x = array(0, 0, 0, 0, 0, 0);
+		$x1 = array();
+		
         $y = 0;
         $now = time();
 
@@ -179,9 +181,9 @@ echo "last_modify_date=".$r["last_modify_date"]."<br>";
         $rs = $this->Query("UPDATE {$this->CONF['db_tbl_prefix']}surveys SET active = 0 WHERE end_date != 0 AND ($now < start_date OR $now > end_date)");
 
 		$lastModifyDate = ($this->get_latest_modify_date()) - 60 * 60 * 24 * $withinDays;
-echo "lastModifyDate=".$lastModifyDate."<br>";		
-        $query = "SELECT sid, name, start_date, end_date, active, survey_text_mode, display_state, on_top, created, last_modify_date FROM {$this->CONF['db_tbl_prefix']}surveys WHERE display_state= 1 and hidden=0 and last_modify_date >= ${lastModifyDate} ORDER BY region, last_modify_date DESC";
-echo $query;
+//echo "lastModifyDate=".$lastModifyDate."<br>";		
+        $query = "SELECT sid, name, start_date, end_date, active, survey_text_mode, display_state, on_top, created, last_modify_date, region FROM {$this->CONF['db_tbl_prefix']}surveys WHERE display_state= 1 and hidden=0 and last_modify_date >= ${lastModifyDate} ORDER BY region, last_modify_date DESC";
+//echo $query;
         $rs = $this->Query($query, '找不到活動存取設定的資訊 ');
         
         while($r = $rs->FetchRow())
@@ -191,34 +193,54 @@ echo $query;
             $survey_name = $this->removeLastBarrels($survey_name);
             $changeDate=$this->toDate($r['last_modify_date']);
 			$createDate=$this->toDate($r['created']);
-			$createOrUpdate = ($createDate == $changeDate) ? "create":"update" ;
+			$regionCode = $r['region'];
 			
-			$xIndex = $createDate . "." .$createOrUpdate;
+			$xIndex="";
 			
+			if($createDate == $changeDate) {
+				$createOrUpdate = 0;
+				"update" ;
+				$xIndex = $createDate . "." . $createOrUpdate;
+			}
+			else {
+				$createOrUpdate = 1;
+				$xIndex = $changeDate . "." . $createOrUpdate;
+			}
+						
             if($r['active'] == 1)
             {
-                $survey['public'][$changeDate][$createOrUpdate][$x[$xIndex]]['display'] = $survey_name;
-                $survey['public'][$changeDate][$createOrUpdate][$x[$xIndex]]['sid'] = $r['sid'];
-                $survey['public'][$changeDate][$createOrUpdate][$x[$xIndex]]['createdWithinOneDay'] = (time() - $r['created']) < 60 * 60 * 24;
-                $survey['public'][$changeDate][$createOrUpdate][$x[$xIndex]]['updatedWithinOneDay'] = (time() - $r['last_modify_date']) < 60 * 60 * 24;
-                $survey['public'][$changeDate][$createOrUpdate][$x[$xIndex]]['on_top'] = $r['on_top'];
-                $survey['public'][$changeDate][$createOrUpdate][$x[$xIndex]]['region'] = $r['region'];
-                $survey['public'][$changeDate][$createOrUpdate][$x[$xIndex]]['start_date'] = $this->toDate($r['start_date']);
-                $survey['public'][$changeDate][$createOrUpdate][$x[$xIndex]]['end_date'] = $this->toDate($r['end_date']);
+                $survey['public'][$regionCode][$changeDate][$createOrUpdate][$x1[$xIndex]]['display'] = $survey_name;
+                $survey['public'][$regionCode][$changeDate][$createOrUpdate][$x1[$xIndex]]['sid'] = $r['sid'];
+                $survey['public'][$regionCode][$changeDate][$createOrUpdate][$x1[$xIndex]]['createdWithinOneDay'] = (time() - $r['created']) < 60 * 60 * 24;
+                $survey['public'][$regionCode][$changeDate][$createOrUpdate][$x1[$xIndex]]['updatedWithinOneDay'] = (time() - $r['last_modify_date']) < 60 * 60 * 24;
+                $survey['public'][$regionCode][$changeDate][$createOrUpdate][$x1[$xIndex]]['on_top'] = $r['on_top'];
+                $survey['public'][$regionCode][$changeDate][$createOrUpdate][$x1[$xIndex]]['region'] = $r['region'];
+                $survey['public'][$regionCode][$changeDate][$createOrUpdate][$x1[$xIndex]]['start_date'] = $this->toDate($r['start_date']);
+                $survey['public'][$regionCode][$changeDate][$createOrUpdate][$x1[$xIndex]]['end_date'] = $this->toDate($r['end_date']);
                 
-                //testing code 
-                echo "changeDate=".$changeDate." createOrUpdate=".$createOrUpdate." x[".$xIndex."]=".$x[$xIndex]." ".$survey['public'][$changeDate][$createOrUpdate][$x[$xIndex]]['display']."<br>" ;
-                $x[$xIndex] = $x[$xIndex]+1;
+                $x[$regionCode] = $x[$regionCode]+1;
+				
+				//testing code
+                //echo "regionCode=".$regionCode." changeDate=".$changeDate." createOrUpdate=".$createOrUpdate." x[".$xIndex."]=".$x1[$xIndex]." ".$survey['public'][$regionCode][$changeDate][$createOrUpdate][$x1[$xIndex]]['display']."<br>" ;
+                $x1[$xIndex] = $x1[$xIndex]+1;
+				
 				}
         } 
         //testing code for list all surveys.
+		/*
         for($i=0; $i<=5; $i++) {
-           for($j=0; $j<count($survey['public'][$i]); $j++) {
-		     for($k=0; $k<count($survey['public'][$i][$j]); $k++) {
-               echo "i=".$i." j=".$j." k=".$k." ".$survey['public'][$i][$j][$k]['display']."<br>" ;
+		echo "i".sizeof($survey['public'][$i]);
+           foreach($survey['public'][$i] as $key1 => $value1) {
+		echo "j".count($survey['public'][$i][$j]);
+		     foreach($value1 as $key2 => $value2) {
+		echo "k".count($survey['public'][$i][$j][$k]);
+				foreach($value2 as $key3 => $value3) {
+					echo "i=".$i." k1=".$key1." k2=".$key2." k3=".$key3." ".$value3['display']."<br>" ;
+				}
 			 }
            }
         }
+		*/
         
         if(isset($_SESSION['priv']))
         { $show['logout'] = TRUE; }
