@@ -4,7 +4,10 @@ if ('{$smarty.request.result}'=='ok')
 </script>
 <div class="mainarea">
 <div>
-      <div class=div_title menuitem">
+      <div class="page_title">
+	    一週內最新活動 (<a href="available_surveys.php">列出全部活動</a>)
+	  </div>
+      <div class="div_title menuitem">
         {if $regionCountX[1]} <a href="#region1">跨區({$regionCountX[1]})</a> {else} 跨區({$regionCountX[1]}) {/if}|
         {if $regionCountX[2]} <a href="#region2">北部({$regionCountX[2]})</a> {else} 北部({$regionCountX[2]}) {/if}|
         {if $regionCountX[3]} <a href="#region3">中部({$regionCountX[3]})</a> {else} 中部({$regionCountX[3]}) {/if}|

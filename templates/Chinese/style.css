@@ -147,6 +147,16 @@ a:hover {
   background-color:#EEEEFF
 }
 
+.page_title {
+  color: #F55;
+  font-size: 18px;
+  font-weight: bold;
+  text-align: center;
+  background-color:#fFED36;
+  padding: 5px;
+  
+}
+
 /* for IE9 */
 .gradient {
        filter: none;
@@ -200,7 +210,7 @@ a:hover {
 }
 
 .menuitem {
-  font-size:16px;
+  font-size:15px;
   line-height:150%;
   color: #555599;
 }
