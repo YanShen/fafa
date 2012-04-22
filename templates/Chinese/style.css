@@ -233,3 +233,11 @@ a:hover {
   background-color: #EEF5FF;
   padding: 2px;
 }
+
+.footerlayout {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  float: left;
+  width: 775px;
+  text-align: center;
+}
