@@ -146,8 +146,10 @@ Site Search Google -->
             {/section}
 
             {section name="previous" loop=1 show=$show.previous_button}
-              &nbsp;
-              <input type="submit" name="previous" value="{$button.previous|default:"&lt;&lt;&nbsp;上一頁"}">
+              {if $survey.total_pages <> 1}
+			    &nbsp;
+                <input type="submit" name="previous" value="{$button.previous|default:"&lt;&lt;&nbsp;上一頁"}">
+			  {/if}
             {/section}
 
             {section name="next" loop=1 show=$show.next_button}
