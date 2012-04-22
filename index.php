@@ -7,7 +7,7 @@ $survey = new UCCASS_Survey;
 
 echo $survey->com_user_header();
 
-echo $survey->available_surveys();
+echo $survey->latest_surveys();
 
 echo $survey->com_footer();
 //echo $survey->com_footer();
