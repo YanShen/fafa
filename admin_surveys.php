@@ -12,6 +12,6 @@ if(!isset($activeType)) $activeType = 1;
 
 echo $survey->active_surveys('admin_surveys.tpl', $activeType);
 
-//echo $survey->com_footer();
+echo $survey->com_footer();
 
 ?>

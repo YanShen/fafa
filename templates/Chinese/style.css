@@ -9,11 +9,9 @@ table, tr, td, th {
   font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
   font-size: 15px;
   padding: 2px;
-  align: center;
 }
 
 .list_table {
-  align: center;
   border-collapse: collapse;
   //border: 1px solid #888888;
 }
@@ -37,11 +35,12 @@ table, tr, td, th {
   background-color: #F9F9F9;
 }
 
-.grayboxheader {
+.grayboxheader td{
   font-family: Verdana, Arial, Helvetica, sans-serif;
   font-weight: bold;
   color: #7E7D7E;
   text-align: center;
+  padding: 0px;
 }
 
 .whitebox {

@@ -15,8 +15,12 @@
     </script>
   </head>
   <body background="{$conf.images_html}/" onload="if(changePageTitle)changePageTitle();">
-  <div class="menulayout">
-  Menu
-  </div>
+<table><tr><td>
+
+    <div style="float:left;text-align:center;background-color:yellow"><a style="font-size:13px" name="fb_share" type="icon_link" href="http://www.facebook.com/sharer.php">分享賺錢機會<br>*\(^o^)/*</a><script src="http://static.ak.fbcdn.net/connect.php/js/FB.Share" type="text/javascript"></script>
+	</div>
+    <div style="float:left" class="menuitem">&nbsp;&nbsp;<a href="http://www.facebook.com/5ifafa88">粉絲團</a></div>
+
+</tr></td><table>
 <!-- MAIN CONTENT AREA -->
 
