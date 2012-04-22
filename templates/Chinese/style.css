@@ -154,7 +154,11 @@ a:hover {
   text-align: center;
   background-color:#fFED36;
   padding: 5px;
-  
+}
+
+.page_title_link {
+  font-size: 15px;
+  text-decoration: underline;
 }
 
 /* for IE9 */

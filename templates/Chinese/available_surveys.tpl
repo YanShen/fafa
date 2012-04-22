@@ -5,7 +5,7 @@ if ('{$smarty.request.result}'=='ok')
 <div class="mainarea">
 <div>
       <div class="page_title">
-	    全部活動 (<a href="latest_surveys.php">列出最新活動</a>)
+	    全部活動 <a style="page_title_link" href="latest_surveys.php"><span class="page_title_link">(列出最新活動)</span></a>
 	  </div>
       <div class=div_title menuitem">
         {if $regionCountX[1]} <a href="#region1">跨區({$regionCountX[1]})</a> {else} 跨區({$regionCountX[1]}) {/if}|
