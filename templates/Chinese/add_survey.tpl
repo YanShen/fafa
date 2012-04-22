@@ -31,6 +31,8 @@
         as "C447 Oct-2002 Command Climate Assessment" instead of "charlie survey."
         <br />
         <input type="text" name="survey_name" size="40" maxlength="255" value="{$survey_name}">
+		<br>
+		範例:<span style="color:red">[</span>台北<span style="color:red">]</span> 清潔用品座談會<span style="color:red">-</span>車馬費2000<span style="color:blue">(</span>N<span style="color:red">-</span>4/9<span style="color:blue">)</span>
       </div>
     </td>
   </tr>

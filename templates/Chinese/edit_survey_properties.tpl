@@ -16,7 +16,7 @@
 
       <div class="indented_cell">
         <input type="text" name="name" value="{$data.name}" size="50"> <br>
-         範例:<span style="color:red">[</span>台北<span style="color:red">]</span> 清潔用品座談會<span style="color:red">-</span>車馬費2000(N-4/9)
+         範例:<span style="color:red">[</span>台北<span style="color:red">]</span> 清潔用品座談會<span style="color:red">-</span>車馬費2000<span style="color:blue">(</span>N<span style="color:red">-</span>4/9<span style="color:blue">)</span>
       </div>
 
       <div class="whitebox">讀取密碼</div>
