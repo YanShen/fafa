@@ -1,12 +1,9 @@
-﻿<script> 
+<script> 
 if ('{$smarty.request.result}'=='ok')
     alert('恭喜您完成報名！\n請記得您的介紹人為<<李小姐>>。\n\n＊＊請((不要))說是網路上看到座談會訊息，否則會被市調公司((取消報名資格))喔！＊＊');
 </script>
-
 <div class="mainarea">
-
 <div>
-
       <div class=div_title menuitem">
         {if $regionCountX[1]} <a href="#region1">跨區({$regionCountX[1]})</a> {else} 跨區({$regionCountX[1]}) {/if}|
         {if $regionCountX[2]} <a href="#region2">北部({$regionCountX[2]})</a> {else} 北部({$regionCountX[2]}) {/if}|

@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
   <head>
     <meta http-equiv="content-type" content="text/html; charset={$conf.charset}">
@@ -17,6 +17,10 @@
     </script>
   </head>
   <body background="{$conf.images_html}/" onload="changePageTitle()">
+<div class="headerlayout">
+  <div class="site-title">我愛發發~市調活動網</div>
+  <div class="site-subtitle">$$$ 時機歹歹，呼朋引伴一起賺外快!! $$$</div>
+</div>
 <div class="menulayout">
   <div class="div_title menuitem">功能表</div>
   <div><a href="latest_surveys.php"><li class="menuitem">最新活動</li></a></div>

@@ -134,7 +134,7 @@ class UCCASS_Survey extends UCCASS_Main
         { $this->smarty->assign_by_ref("regionCountX", $x); }
 
         $retval = $this->smarty->fetch($this->template.'/'.$tplName);
-
+		
         return $retval;
     }
 
