@@ -45,6 +45,13 @@ if ('{$smarty.request.result}'=='ok')
 			   <div>
 			     <a href="{$conf.html}/survey.php?sid={$item4.sid}">
                  {$item4.display}
+                 {if $item4.on_top == 1}
+			       <sup style="color:red;">急缺!!</sup>
+			     {elseif $item4.createdWithinOneDay}
+                   <sup style="color:green;">最新!!</sup>
+                 {elseif $item4.updatedWithinOneDay}
+                   <sup style="color:blue;">更新!!</sup>
+                 {/if}
 			     </a>
 			   </div>
 			  {/foreach}
