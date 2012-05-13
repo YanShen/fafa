@@ -1,4 +1,4 @@
-﻿<div class="mainarea">
+<div class="mainarea">
 <!-- Site Search Google
 <table class="bordered_table" width="100%" align="center" cellpadding="0" cellspacing="0">
   <tr><td>
@@ -161,7 +161,4 @@ Site Search Google -->
     </tr> 
   </table>
 </form>
-
-<!-- Footer -->
-
 </div> <!-- float to left -->

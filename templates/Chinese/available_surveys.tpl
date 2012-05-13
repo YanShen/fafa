@@ -52,10 +52,4 @@ if ('{$smarty.request.result}'=='ok')
       
       </table>
       </div>
-
-<!-- Footer -->
-<div>
-<!-- 贊助商連結 -->
-</div>
-
 </div> <!-- float to left -->

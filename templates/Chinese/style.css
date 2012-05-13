@@ -11,6 +11,10 @@ table, tr, td, th {
   padding: 2px;
 }
 
+body {
+  text-align: center;
+}
+
 .list_table {
   border-collapse: collapse;
   //border: 1px solid #888888;
@@ -168,7 +172,7 @@ a:hover {
 
 .headerlayout {
   float: none;
-  width: 775px;
+  width: 100%;
   border: 1px solid #DD9955;
   margin-bottom: 5px;
   background: #fefcea; /* Old browsers */
@@ -203,8 +207,8 @@ a:hover {
 
 .menulayout {
   float: left;
-  width: 150px;
-  padding: 5px;
+  width: 160px;
+  padding: 4px;
   border-color: #bdbdbd;
   border-style: solid;
   border-top-width: 1;
@@ -220,10 +224,10 @@ a:hover {
 }
 
 .mainarea {
-  width: 600px;
-  margin-left: 5px;
+  width: 638px;
+  margin-left: 6px;
   float:left;
-  padding: 5px;
+  padding: 4px;
   border: 1px solid #888888;
 }
 
@@ -254,4 +258,18 @@ a:hover {
   float: left;
   width: 775px;
   text-align: center;
+}
+
+.right_ad {
+  margin-left: 6px;
+  width: 160px;
+  padding: 4px;
+  float: left;
+  background-color: #FFD;
+}
+
+.page {
+  width: 1000px;
+  text-align: left;
+  margin: 0 auto;
 }
