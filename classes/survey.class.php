@@ -297,10 +297,10 @@ class UCCASS_Survey extends UCCASS_Main
 
 		$lastModifyDate = ($this->get_latest_modify_date()) - 60 * 60 * 24 * $withinDays;
 //echo "lastModifyDate=".$lastModifyDate."<br>";		
-        $query = "SELECT sid, name, start_date, end_date, active, survey_text_mode, display_state, on_top, created, last_modify_date, region FROM {$this->CONF['db_tbl_prefix']}surveys WHERE display_state= 1 and hidden=0 and last_modify_date >= ${lastModifyDate} ORDER By region ASC, last_modify_date DESC";
+        $query = "SELECT sid, name, start_date, end_date, active, survey_text_mode, display_state, on_top, created, last_modify_date, region FROM {$this->CONF['db_tbl_prefix']}surveys WHERE display_state= 1 and hidden=0 and last_modify_date >= ${lastModifyDate} ORDER BY region ASC, last_modify_date DESC";
 //echo $query;
         $rs = $this->Query($query, '找不到活動存取設定的資訊 ');
-        
+
         while($r = $rs->FetchRow())
         {
             $survey_name = $this->SfStr->getSafeString($r['name'],$r['survey_text_mode']);
@@ -322,6 +322,10 @@ class UCCASS_Survey extends UCCASS_Main
 				$xIndex = $changeDate . "." . $createOrUpdate;
 			}
 			
+			if(!$x1[$xIndex]) {
+				$x1[$xIndex] = 0;
+			}
+			
             if($r['active'] == 1)
             {
                 $survey['public'][$changeDate][$createOrUpdate][$x1[$xIndex]]['display'] = $survey_name;
@@ -336,26 +340,32 @@ class UCCASS_Survey extends UCCASS_Main
                 $x[$regionCode] = $x[$regionCode]+1;
 				
 				//testing code
-                //echo "regionCode=".$regionCode." changeDate=".$changeDate." createOrUpdate=".$createOrUpdate."(CorU=".$corU.") x[".$xIndex."]=".$x1[$xIndex]." ".$survey['public'][$regionCode][$changeDate][$createOrUpdate][$x1[$xIndex]]['display']."<br>" ;
+//echo "regionCode=".$regionCode." changeDate=".$changeDate." createOrUpdate=".$createOrUpdate."(CorU=".$corU.") x[".$xIndex."]=".$x1[$xIndex]." ".$survey['public'][$regionCode][$changeDate][$createOrUpdate][$x1[$xIndex]]['display']."<br>" ;
                 $x1[$xIndex] = $x1[$xIndex]+1;
 				
 				}
         } 
         //testing code for list all surveys.
-		/*
-        for($i=0; $i<=5; $i++) {
-		echo "i".sizeof($survey['public'][$i]);
-           foreach($survey['public'][$i] as $key1 => $value1) {
-		echo "j".count($survey['public'][$i][$j]);
+		krsort($survey['public']);
+		foreach($survey['public'] as $key1 => $value1) {
+			krsort($value1);
+		}
+/*		
+		echo "<pre>";
+		print_r($survey['public']);
+		echo "</pre>";
+*/
+/*	
+           foreach($survey['public'] as $key1 => $value1) {
+		echo "j".count($survey['public'][$key1]);
 		     foreach($value1 as $key2 => $value2) {
-		echo "k".count($survey['public'][$i][$j][$k]);
+		echo "k".count($survey['public'][$key1][$key2]);
 				foreach($value2 as $key3 => $value3) {
-					echo "i=".$i." k1=".$key1." k2=".$key2." k3=".$key3." ".$value3['display']."<br>" ;
+					echo "k1=".$key1." k2=".$key2." k3=".$key3." ".$value3['display']."<br>" ;
 				}
 			 }
            }
-        }
-		*/
+*/
         
         if(isset($_SESSION['priv']))
         { $show['logout'] = TRUE; }

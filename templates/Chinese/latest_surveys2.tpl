@@ -12,35 +12,33 @@ if ('{$smarty.request.result}'=='ok')
 
 	      {foreach from=$survey.public  key="date" item="item2"}
 		    <tr><td class="latest-date">{$date}</td></tr>
-		    {section name=item3 loop=$item2}
-				{if item3 }
-				  <tr><td>
-				  <div>
-				  {if $smarty.section.item3.index == 0}
-					<div class="latest-update">更新</div>
-				  {else}
-					<div class="latest-new">新增</div>
-				  {/if}
-				  </div>
-				  <div style="float:left">
-				  {foreach from=$item2[item3] item="item4"}
-				   <div>
-					 <a href="{$conf.html}/survey.php?sid={$item4.sid}">
-					 {$item4.display}
-					 {if $item4.on_top == 1}
-					   <sup style="color:red;">急缺!!</sup>
-					 {elseif $item4.createdWithinOneDay}
-					   <sup style="color:green;">最新!!</sup>
-					 {elseif $item4.updatedWithinOneDay}
-					   <sup style="color:blue;">更新!!</sup>
-					 {/if}
-					 </a>
-				   </div>
-				  {/foreach}
-				  </div>
-				  </td></tr>
-				{/if}
-		    {/section}
+		    {foreach from=$item2 key="coru" item="item3"}
+		      <tr><td>
+			  <div>
+			  {if $coru}
+			    <div class="latest-update">更新</div>
+			  {else}
+			    <div class="latest-new">新增</div>
+			  {/if}
+			  </div>
+			  <div style="float:left">
+		      {foreach from=$item3 item="item4"}
+			   <div>
+			     <a href="{$conf.html}/survey.php?sid={$item4.sid}">
+                 {$item4.display}
+                 {if $item4.on_top == 1}
+			       <sup style="color:red;">急缺!!</sup>
+			     {elseif $item4.createdWithinOneDay}
+                   <sup style="color:green;">最新!!</sup>
+                 {elseif $item4.updatedWithinOneDay}
+                   <sup style="color:blue;">更新!!</sup>
+                 {/if}
+			     </a>
+			   </div>
+			  {/foreach}
+			  </div>
+			  </td></tr>
+		    {/foreach}
 		  {/foreach}
 		</table>
 		</div>
