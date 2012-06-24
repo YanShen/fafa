@@ -30,7 +30,7 @@
         from all other surveys so they can be told apart. Use a descriptive name such
         as "C447 Oct-2002 Command Climate Assessment" instead of "charlie survey."
         <br />
-        <input type="text" name="survey_name" size="40" maxlength="255" value="{if $survey_name}{$survey_name}{else}[台北] 座談會-車馬費 元( - / ){/if}">
+        <input type="text" name="survey_name" size="40" maxlength="255" value="{if $survey_name}{$survey_name}{else}[台北] 座談會-車馬費元(-/){/if}">
 		<br>
 		範例:<span style="color:red">[</span>台北<span style="color:red">]</span> 清潔用品座談會<span style="color:red">-</span>車馬費2000元<span style="color:blue">(</span>N<span style="color:red">-</span>4/9<span style="color:blue">)</span>
       </div>
