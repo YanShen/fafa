@@ -49,13 +49,12 @@
         <!-- <input type="text" size="80" name="default_referrer" value="{$data.default_referrer}">  -->
         <select style="width:150px" name="default_referrer">
          <option value=""></option>
-         <option value="李凱榕" {if $data.default_referrer == "李凱榕"}selected{/if}>李凱榕</option>
+		 <option value="李凱榕(0955-215636)" {if $data.default_referrer == "李凱榕(0955-215636)"}selected{/if}>李凱榕(0955-215636)</option>
+		 <option value="許定曄" {if $data.default_referrer == "許定曄"}selected{/if}>許定曄</option>
          <option value="李錢玲珍" {if $data.default_referrer == "李錢玲珍"}selected{/if}>李錢玲珍</option>
          <option value="沈惠婷" {if $data.default_referrer == "沈惠婷"}selected{/if}>沈惠婷</option>
          <option value="沈政彥" {if $data.default_referrer == "沈政彥"}selected{/if}>沈政彥</option> 
          <option value="郭家榮" {if $data.default_referrer == "郭家榮"}selected{/if}>郭家榮</option>
-         <option value="李凱榕(0955-215636)" {if $data.default_referrer == "李凱榕(0955-215636)"}selected{/if}>李凱榕(0955-215636)</option>
-         <option value="沈惠婷(0955-215636)" {if $data.default_referrer == "沈惠婷(0955-215636)"}selected{/if}>沈惠婷(0955-215636)</option>
          <option value="{$data.default_referrer}">{$data.default_referrer}</option>
         </select>
       </div>
