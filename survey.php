@@ -11,6 +11,6 @@ $header = $survey->com_user_header("{$survey->survey_name}");
 
 echo $header;
 echo $body;
-echo $survey->com_footer();
+echo $survey->user_footer();
 
 ?>

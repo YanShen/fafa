@@ -363,6 +363,15 @@ class UCCASS_Main
         return $this->smarty->fetch($this->template.'/main_footer.tpl');
     }
 
+	    function user_footer()
+    {
+        //Close connection to database
+        $this->db->Close();
+
+        //Return footer template
+        return $this->smarty->fetch($this->template.'/user_main_footer.tpl');
+    }
+	
     /*************************
     * RETRIEVE ANSWER VALUES *
     *************************/

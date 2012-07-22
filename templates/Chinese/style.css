@@ -1,7 +1,7 @@
 ﻿body {
   font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
   font-size: 13px;
-  background-color: #F8F8FF;
+  background-color: #FFFFFF;
   color: #000000;
 }
 
@@ -266,6 +266,12 @@ a:hover {
   padding: 4px;
   float: left;
   background-color: #FFD;
+  border-color: #bdbdbd;
+  border-style: solid;
+  border-top-width: 1;
+  border-bottom-width: 1;
+  border-right-width: 1;
+  border-left-width: 1;  
 }
 
 .page {

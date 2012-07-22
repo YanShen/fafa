@@ -139,6 +139,8 @@ Site Search Google -->
           </div>
         {/section}
 
+		<div>
+		<div class="fb-like" style="text-align:center" data-href="http://{$smarty.server.HTTP_HOST}{$smarty.server.REQUEST_URI}" data-send="true" data-layout="button_count" data-width="100" data-show-faces="true" data-action="recommend"></div>
         {*BUTTONS*}
           <div style="text-align:right">
             {section name="quit" loop=1 show=$show.quit_button}

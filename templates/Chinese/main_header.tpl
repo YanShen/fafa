@@ -16,11 +16,13 @@
   </head>
   <body background="{$conf.images_html}/" onload="if(changePageTitle)changePageTitle();">
 <table><tr><td>
-
-    <div style="float:left;text-align:center;background-color:yellow"><a style="font-size:13px" name="fb_share" type="icon_link" href="http://www.facebook.com/sharer.php">分享賺錢機會<br>*\(^o^)/*</a><script src="http://static.ak.fbcdn.net/connect.php/js/FB.Share" type="text/javascript"></script>
+<div class="menulayout">
+    <div>
+	<script src="http://connect.facebook.net/zh_TW/all.js#xfbml=1"></script>
+    <div class="fb-like" style="text-align:center" data-href="http://{$smarty.server.HTTP_HOST}{$smarty.server.REQUEST_URI}" data-send="true" data-layout="button_count" data-width="100" data-show-faces="true" data-action="recommend"></div>
 	</div>
-    <div style="float:left" class="menuitem">&nbsp;&nbsp;<a href="http://www.facebook.com/5ifafa88">粉絲團</a></div>
-
+    <div class="menuitem"><a href="http://www.facebook.com/5ifafa88">粉絲團</a></div>
+</div>
 </tr></td><table>
 <!-- MAIN CONTENT AREA -->
 

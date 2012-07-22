@@ -33,6 +33,7 @@
 	
   </head>
   <body background="{$conf.images_html}/" class="centered_body" onload="changePageTitle()">
+  
 <div class="page">
 
 <div class="headerlayout">
@@ -52,10 +53,25 @@
     <div>
 	<!-- Facebook Badge START --><a href="http://www.facebook.com/5ifafa88" target="_TOP" style="font-family: &quot;lucida grande&quot;,tahoma,verdana,arial,sans-serif; font-size: 11px; font-variant: normal; font-style: normal; font-weight: normal; color: #3B5998; text-decoration: none;" title="我愛發發－市調活動網">我愛發發－市調活動網</a><br/><a href="http://www.facebook.com/5ifafa88" target="_TOP" title="我愛發發－市調活動網"><img src="http://badge.facebook.com/badge/189681154397.3014.603890911.png" style="border: 0px;" /></a><br/><!-- Facebook Badge END -->
 	</div>
-  
-    <div style="text-align:center;background-color:yellow"><a style="font-size:13px" name="fb_share" type="icon_link" href="http://www.facebook.com/sharer.php">分享外快活動<br>*\(^o^)/*</a><script src="http://static.ak.fbcdn.net/connect.php/js/FB.Share" type="text/javascript"></script> </div>
-
-<!-- google ad -->    
+<hr/>
+  <div style="margin-top:5px">
+    <script src="http://connect.facebook.net/zh_TW/all.js#xfbml=1"></script>
+    <div class="fb-like" style="text-align:center" data-href="http://{$smarty.server.HTTP_HOST}{$smarty.server.REQUEST_URI}" data-send="true" data-layout="button_count" data-width="100" data-show-faces="true" data-action="recommend"></div>
+  </div>
+<hr/>
+<div style="margin-top:5px">
+<!-- google ad -->
+<script type="text/javascript"><!--
+google_ad_client = "ca-pub-6375786126458292";
+/* Small Vertical */
+google_ad_slot = "1863750614";
+google_ad_width = 120;
+google_ad_height = 90;
+//-->
+</script>
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
 <script type="text/javascript"><!--
 google_ad_client = "ca-pub-6375786126458292";
 /* Vertical Small */
@@ -68,14 +84,8 @@ google_ad_height = 240;
 src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
 </script>
 <!-- google ad -->
-	
-    <!--email cache banner -->
-	<div>
-      <A HREF="http://www.emailcash.com.tw/join.asp?refer=guly" target=_blank>
-      <IMG SRC="http://www.emailcash.com.tw/img/refer_14060.gif"BORDER=0></A>
-	</div>
-    <!--email cache-->
-    
+</div>
+
     </td>
     </tr>
     </table>
