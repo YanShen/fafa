@@ -46,7 +46,7 @@
   <div><a href="available_surveys.php"><li class="menuitem">全部活動</li></a></div>
   <!-- <div><a href="announcement.php"><li class="menuitem">注意事項</li></a></div> -->
   <div><a href="http://www.facebook.com/5ifafa88"><li class="menuitem">粉絲團</li></a></div>
-  <div><a href="http://groups.google.com/group/5ifafa/"><li class="menuitem">訂閱電子報</li></a></div>
+  <div><a href="http://hk.groups.yahoo.com/group/MONEY_MONEY/join"><li class="menuitem">訂閱電子報</li></a></div>
   <hr/>
   <div align="center">
 
@@ -54,15 +54,13 @@
 	<!-- Facebook Badge START --><a href="http://www.facebook.com/5ifafa88" target="_TOP" style="font-family: &quot;lucida grande&quot;,tahoma,verdana,arial,sans-serif; font-size: 11px; font-variant: normal; font-style: normal; font-weight: normal; color: #3B5998; text-decoration: none;" title="我愛發發－市調活動網">我愛發發－市調活動網</a><br/><a href="http://www.facebook.com/5ifafa88" target="_TOP" title="我愛發發－市調活動網"><img src="http://badge.facebook.com/badge/189681154397.3014.603890911.png" style="border: 0px;" /></a><br/><!-- Facebook Badge END -->
 	</div>
 <hr/>
-  <div style="margin-top:5px">
+  <div style="margin-top:5px;width:160px">
     <script src="http://connect.facebook.net/zh_TW/all.js#xfbml=1"></script>
-    <div class="fb-like" style="text-align:center" data-href="http://{$smarty.server.HTTP_HOST}{$smarty.server.REQUEST_URI}" data-send="true" data-layout="button_count" data-width="100" data-show-faces="true" data-action="recommend"></div>
+    <div class="fb-like" style="text-align:center" data-href="http://{$smarty.server.HTTP_HOST}{$smarty.server.REQUEST_URI}" data-send="true" data-layout="box_count" data-width="100" data-show-faces="true" data-action="recommend"></div>
   </div>
 <hr/>
 <div style="margin-top:5px">
-<script type="text/javascript"
-src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
-</script>
+<!-- google ad -->
 <script type="text/javascript"><!--
 google_ad_client = "ca-pub-6375786126458292";
 /* Vertical Small */
