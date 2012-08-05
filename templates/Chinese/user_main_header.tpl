@@ -60,15 +60,6 @@
   </div>
 <hr/>
 <div style="margin-top:5px">
-<!-- google ad -->
-<script type="text/javascript"><!--
-google_ad_client = "ca-pub-6375786126458292";
-/* Small Vertical */
-google_ad_slot = "1863750614";
-google_ad_width = 120;
-google_ad_height = 90;
-//-->
-</script>
 <script type="text/javascript"
 src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
 </script>
