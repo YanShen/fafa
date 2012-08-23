@@ -1,10 +1,30 @@
 ﻿<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<?php
+function getRealIpAddr()
+{
+    if (!empty($_SERVER['HTTP_CLIENT_IP']))   //check ip from share internet
+    {
+      $ip=$_SERVER['HTTP_CLIENT_IP'];
+    }
+    elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR']))   //to check ip is pass from proxy
+    {
+      $ip=$_SERVER['HTTP_X_FORWARDED_FOR'];
+    }
+    else
+    {
+      $ip=$_SERVER['REMOTE_ADDR'];
+    }
+    return $ip;
+}
+
+$msg = "Client IP:".getRealIpAddr()." page: fake admin_survey.php. Unauthorized attempting to list surveys.";
+
+error_log('['.date("F j, Y, g:i a e O").']'.$msg." \n", 3,  "C:\\Program Files\\Apache Group\\Apache2\\logs\\unauthorized_access.log");
+?>
 <html>
   <head>
     <meta http-equiv="content-type" content="text/html; charset=UTF8">
     <meta name="description" content="">
-    <script type="application/javascript" src="http://l2.io/ip.js?var=myip">
-	
 	</script>
     <link rel="stylesheet" type="text/css" href="/ms/templates/Chinese/style.css"> 
     <script>
@@ -18,11 +38,6 @@
     </script>
   </head>
   <body background="" onload="if(changePageTitle)changePageTitle();">
-
-<script>
-alert("l2ip="+myip);
-</script>
-
 <table><tr><td>
 <div class="menulayout">
     <div>
