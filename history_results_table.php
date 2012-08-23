@@ -7,12 +7,16 @@ class HistoryResults extends UCCASS_Main
     { $this->load_configuration(); }
 	
 	  function listHistory() {
+	  	$survey['sid']=$_REQUEST['sid'];
+	  
+        if(!$this->_CheckLogin($sid,EDIT_PRIV,"history_results_table.php?sid=".$survey['sid']))
+        { return $this->showLogin("history_results_table.php?sid=".$survey['sid']); }
+	  
 	  	$tables[0] = "results";
 	  	$tables[1] = "results_text";
 	  	
 	  	$markedTime = array();
 	  	
-	  	$survey['sid']=$_REQUEST['sid'];
 	  	$query = "select * from surveys where sid='".$survey['sid']."'";
 //echo $query.'<br>';
 	  	$rs = $this->query($query);
