@@ -20,7 +20,7 @@
 
   <tr>
     <td>
-      [<a href="/ms/admin_surveys.php">列表</a>] {$data.content}
+      [<a href="/ms/admin0302_surveys.php">列表</a>] {$data.content}
     </td>
   </tr>
 
@@ -35,7 +35,7 @@
       &nbsp;|&nbsp;
       <a href="{$conf.html}/index.php">主畫面</a>
       &nbsp;|&nbsp;
-      <a href="{$conf.html}/admin.php">管理</a> ]
+      <a href="{$conf.html}/admin0302.php">管理</a> ]
     </td>
   </tr>
 </table>

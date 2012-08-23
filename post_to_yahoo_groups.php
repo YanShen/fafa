@@ -3,26 +3,6 @@
 include("classes/http.php");
 include('classes/main.class.php');
 
-	$ini_file = "survey.ini.php";
-	$ini = @parse_ini_file($ini_file);
-
-	//if $debug == 0, no debug message wiil be output in the browser
-	$debug = 0;
-	$echoBody = 0;
-
-	$notifyType = $_REQUEST["notifyType"];
-
-	if($notifyType == "") {
-		echo "No notifyType specified. Process end.";
-		return;
-	}
-	
-	$account = 		$ini[$notifyType . ".yahooGroup.account"];		//"guly0302";
-	$passwd = 		$ini[$notifyType . ".yahooGroup.passwd"];		//"kai456";
-	$loginUrl = 	$ini[$notifyType . ".yahooGroup.loginUrl"];	//"https://login.yahoo.com/config/login?";
-	$postUrl = 		$ini[$notifyType . ".yahooGroup.postUrl"];		//"http://hk.groups.yahoo.com/group/daadadad/post";
-
-	
 	Function debug($message) {
 		global $debug;
 	
@@ -58,6 +38,18 @@ include('classes/main.class.php');
 	}
 	
 	class YahooPoster extends UCCASS_Main {
+		Function checkPrivilege($sid) {
+			//Ensure user is logged in with valid privileges
+			//for the requested survey or is an administrator
+
+			if(!$this->_CheckLogin($sid,EDIT_PRIV,"post_to_yahoo_groups.php?sid=$sid"))
+			{
+				echo $this->showLogin('post_to_yahoo_groups.php',array('sid'=>$sid));
+				return false;
+			}
+			return true;
+		}
+		
 		Function getTitle($sid) {
 			$rs = $this->Query("SELECT sid, name from {$this->CONF['db_tbl_prefix']}surveys WHERE sid = $sid");
 			if($rs === FALSE)
@@ -80,10 +72,32 @@ include('classes/main.class.php');
 			}
 		}
 	}
-	
+
+	$ini_file = "survey.ini.php";
+	$ini = @parse_ini_file($ini_file);
+
+	//if $debug == 0, no debug message wiil be output in the browser
+	$debug = 0;
+	$echoBody = 0;
+
+	$notifyType = $_REQUEST["notifyType"];
 	$sid = $_REQUEST['sid'];
-	
+
 	$so = new YahooPoster();
+	
+	if(!$so->checkPrivilege($sid) ) {
+		return;
+	}
+	
+	if($notifyType == "" || $sid == "") {
+		echo "No notifyType or sid specified. Process end.";
+		return;
+	}
+	
+	$account = 		$ini[$notifyType . ".yahooGroup.account"];		//"guly0302";
+	$passwd = 		$ini[$notifyType . ".yahooGroup.passwd"];		//"kai456";
+	$loginUrl = 	$ini[$notifyType . ".yahooGroup.loginUrl"];	//"https://login.yahoo.com/config/login?";
+	$postUrl = 		$ini[$notifyType . ".yahooGroup.postUrl"];		//"http://hk.groups.yahoo.com/group/daadadad/post";
 	
 	$surveySubject = $so->getTitle($sid);
 	$surveyDesc = $so->getDesc($sid);

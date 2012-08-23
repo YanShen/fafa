@@ -34,7 +34,7 @@
   </tr>
   <tr>
     <td>
-      <form method="post" action="{$conf.html}/admin.php">
+      <form method="post" action="{$conf.html}/admin0302.php">
         <table border="1" cellspacing="0" cellpadding="2" align="center" width="80%">
           <tr>
             <th>Name</th>

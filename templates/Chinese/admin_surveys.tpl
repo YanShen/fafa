@@ -36,9 +36,9 @@ function openNewListInNewBrowsers() {
     <td>
       <div style="font-weight:bold;text-align:center">
         {if $activeType == 1} 啟用的 {elseif $activeType == 0} 停用的 {else} 所有 {/if}
-         {if $activeType != 0} [<a href="admin_surveys.php?activeType=0">停用的</a>] {/if}
-         {if $activeType != 1} [<a href="admin_surveys.php?activeType=1">啟用的</a>] {/if}
-         {if $activeType != -1} [<a href="admin_surveys.php?activeType=-1">全部</a>] {/if}
+         {if $activeType != 0} [<a href="admin0302_surveys.php?activeType=0">停用的</a>] {/if}
+         {if $activeType != 1} [<a href="admin0302_surveys.php?activeType=1">啟用的</a>] {/if}
+         {if $activeType != -1} [<a href="admin0302_surveys.php?activeType=-1">全部</a>] {/if}
           [<a href="#" onclick="openNewListInNewBrowsers()">開啟所有新名單</a>]
       </div>
 
@@ -92,11 +92,11 @@ function openNewListInNewBrowsers() {
   <tr>
     <td style="text-align:center">
       <br />
-        [<a href="{$conf.html}/admin.php">管理</a>]
+        [<a href="{$conf.html}/admin0302.php">管理</a>]
         &nbsp;|&nbsp;[<a href="{$conf.html}/new_answer_type.php?sid={$data.sid}">新增答案類型</a>]
         &nbsp;|&nbsp;[<a href="{$conf.html}/edit_answer.php?sid={$data.sid}">編輯答案類型</a>]
       {section name="logout" loop=1 show=$show.logout}
-        &nbsp;|&nbsp;[<a href="{$conf.html}/index.php?action=logout">登出</a>]
+        &nbsp;|&nbsp;[<a href="{$conf.html}/admin0302_surveys.php?action=logout">登出</a>]
         &nbsp;|&nbsp;
       {/section}
       [<a href="{$conf.html}/docs/index.html">說明文件</a>]

@@ -11,7 +11,7 @@
 
       <div style="text-align:center">
        	[ <a href="{$conf.html}/results_table.php?sid={$survey.sid}&markedOnly=true">全部標記紀錄</a> ]
-        [ <a href="{$conf.html}/admin_surveys.php">管理活動列表</a> ]
+        [ <a href="{$conf.html}/admin0302_surveys.php">管理活動列表</a> ]
         &nbsp;&nbsp;
         [ <a href="{$conf.html}/index.php">主畫面</a> ]
       </div>
@@ -36,7 +36,7 @@
       
       <div style="text-align:center">
        	[ <a href="{$conf.html}/results_table.php?sid={$survey.sid}&markedOnly=true">全部標記紀錄</a> ]
-        [ <a href="{$conf.html}/admin_surveys.php">管理活動列表</a> ]
+        [ <a href="{$conf.html}/admin0302_surveys.php">管理活動列表</a> ]
         &nbsp;&nbsp;
         [ <a href="{$conf.html}/index.php">主畫面</a> ]
       </div>

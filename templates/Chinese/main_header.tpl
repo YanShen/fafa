@@ -14,7 +14,7 @@
 		{/literal}
     </script>
   </head>
-  <body background="{$conf.images_html}/" onload="if(changePageTitle)changePageTitle();">
+  <body background="" onload="if(changePageTitle)changePageTitle();">
 <table><tr><td>
 <div class="menulayout">
     <div>

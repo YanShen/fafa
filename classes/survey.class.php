@@ -405,6 +405,9 @@ class UCCASS_Survey extends UCCASS_Main
             { unset($_SESSION['priv']); }
         }
 
+        if(!$this->_CheckLogin($sid,EDIT_PRIV,"admin0302_surveys.php"))
+        { return $this->showLogin('admin0302_surveys.php'); }
+		
         $survey = array();
 
         $x = 0;

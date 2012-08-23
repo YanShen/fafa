@@ -102,7 +102,7 @@ function findEmailAddresses(StrObj) {
     <td>
 
       <div style="text-align:center">
-        [ <a href="{$conf.html}/admin_surveys.php">管理活動列表</a> ]
+        [ <a href="{$conf.html}/admin0302_surveys.php">管理活動列表</a> ]
         &nbsp;&nbsp;
         [ <a href="{$conf.html}/index.php">主畫面</a> ]
         &nbsp;&nbsp;
@@ -210,7 +210,7 @@ function findEmailAddresses(StrObj) {
       </form>
       
       <div style="text-align:center">
-        [ <a href="{$conf.html}/admin_surveys.php">管理活動列表</a> ]
+        [ <a href="{$conf.html}/admin0302_surveys.php">管理活動列表</a> ]
         &nbsp;&nbsp;
         [ <a href="{$conf.html}/index.php">主畫面</a> ]
         &nbsp;&nbsp;

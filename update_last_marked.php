@@ -1,5 +1,5 @@
 <?php
-//用來將 results_text 的最新的 marked 時間，寫入 surveys.last_marked 欄位，以加速 admin_surveys.php 呈現速度。
+//用來將 results_text 的最新的 marked 時間，寫入 surveys.last_marked 欄位，以加速 admin0302_surveys.php 呈現速度。
 
 include('classes/main.class.php');
 include("classes/special_results.class.php");

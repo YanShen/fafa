@@ -183,4 +183,4 @@ echo "mail.Host=".$mail->Host."<br>";
 		echo "</font>";
 	}
 ?> 
-<center>[<a href="#" onclick="javascript:window.close();">關閉</a>]  [<a href="<?=$ini['html']?>/admin_surveys.php">管理活動列表</a>]</center>
+<center>[<a href="#" onclick="javascript:window.close();">關閉</a>]  [<a href="<?=$ini['html']?>/admin0302_surveys.php">管理活動列表</a>]</center>

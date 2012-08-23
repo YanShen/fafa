@@ -142,7 +142,7 @@ class BlackList extends UCCASS_Main {
 <table align="center" class="bordered_table">
 	<tr>
 	  <td align="center">
-		[ <a href="<?=$bl->CONF["html"]?>/admin_surveys.php">列表</a> ]
+		[ <a href="<?=$bl->CONF["html"]?>/admin0302_surveys.php">列表</a> ]
         &nbsp;|&nbsp;[<a href="<?=$bl->CONF["html"]?>/new_survey.php">建立</a>]
         &nbsp;|&nbsp;[<a href="<?=$bl->CONF["html"]?>/black_list.php">黑名單</a>]
         &nbsp;|&nbsp;[<a href="<?=$bl->CONF["html"]?>/block_list.php">禁止名單</a>]

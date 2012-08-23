@@ -47,10 +47,10 @@
       <br />
       [ <a href="{$conf.html}/new_survey.php">Create New Survey</a>
       &nbsp;|&nbsp;
-      <a href="{$conf.html}/admin.php">Admin</a>
+      <a href="{$conf.html}/admin0302.php">Admin</a>
       &nbsp;|&nbsp;
       {section name="logout" loop=1 show=$show.logout}
-        <a href="{$conf.html}/index.php?action=logout">Logout</a>
+        <a href="{$conf.html}/admin0302_surveys.php?action=logout">Logout</a>
         &nbsp;|&nbsp;
       {/section}
       <a href="{$conf.html}/docs/index.html">Documentation</a> ]

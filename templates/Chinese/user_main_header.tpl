@@ -32,7 +32,7 @@
 	
 	
   </head>
-  <body background="{$conf.images_html}/" class="centered_body" onload="changePageTitle()">
+  <body background="" class="centered_body" onload="changePageTitle()">
   
 <div class="page">
 
