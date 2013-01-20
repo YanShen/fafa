@@ -1,6 +1,12 @@
-<script> 
+<script>
+var resultAlerted = false;
 if ('{$smarty.request.result}'=='ok')
+{literal}
+{
     alert('恭喜您完成報名！\n請記得您的介紹人為<<李小姐>>。\n\n＊＊請((不要))說是網路上看到座談會訊息，否則會被市調公司((取消報名資格))喔！＊＊');
+	resultAlerted = true;
+}
+{/literal}
 </script>
 <div class="mainarea">
 <div>

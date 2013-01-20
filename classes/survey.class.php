@@ -592,11 +592,13 @@ class UCCASS_Survey extends UCCASS_Main
         if($r = $rs->FetchRow($rs))
         {
             if(($r['active'] == 0 || $now < $r['start_date'] || ($now > $r['end_date'] && $r['end_date'] != 0)) && !isset($_SESSION['take_survey']['preview_survey']))
-            { $this->error("Survey #$sid. <em>{$r['name']}</em> in not active at this time");return; }
+            //{ $this->error("Survey #$sid. <em>{$r['name']}</em> in not active at this time");return; }
+			{ $error="{$r['name']} 本活動已停止."; $survey['total_pages']=1;}
         }
         else
         { $this->error("Survey $sid does not exist or has no questions."); return; }
-
+		
+    if(!isset($error)) {
         //check reader has permission
         if((strlen($r['read_password']) > 0 ) && ($_REQUEST['read_password'] == $r['read_password'])) {
           $_SESSION['sid_'.$sid] = "checked";
@@ -1092,7 +1094,7 @@ class UCCASS_Survey extends UCCASS_Main
             //End default display
             break;
         }
-
+    }// if(!isset($error))
         if(isset($_SESSION['take_survey']['page']))
         { $survey['page'] = $_SESSION['take_survey']['page']; }
 

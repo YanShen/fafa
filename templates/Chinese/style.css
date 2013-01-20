@@ -223,8 +223,16 @@ a:hover {
   color: #555599;
 }
 
-.mainarea {
+.mainarea_container {
   width: 638px;
+  margin-left: 0px;
+  float:left;
+  padding: 0px;
+  border: 0px;
+}
+
+.mainarea {
+  width: 622px;
   margin-left: 6px;
   float:left;
   padding: 4px;
