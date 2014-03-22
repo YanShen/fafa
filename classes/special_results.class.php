@@ -1079,6 +1079,161 @@ class UCCASS_Special_Results extends UCCASS_Main
 
         return $retval;
     }
+	
+	// LOAD EXISTING PROPERTIES FOR A SURVEY - copied from editsurvey.class.php//
+    function loadProperties($sid)
+    {
+        $sid = (int)$sid;
+
+        //load survey properties and set default values
+        //by Yan. select read_password, mail_subject and mail_reveiver as well.
+        $query = "SELECT sid, name, start_date, end_date, active,
+                  template, redirect_page, survey_text_mode, user_text_mode, created, date_format, time_limit,
+                  read_password, mail_subject, mail_receiver, default_referrer, display_state, on_top, region, key_desc FROM
+                  {$this->CONF['db_tbl_prefix']}surveys WHERE sid = $sid";
+        $rs = $this->db->Execute($query);
+        if($rs === FALSE)
+        { $this->error("Error loading Survey #$sid: " . $this->db->ErrorMsg()); return; }
+        elseif($r = $rs->FetchRow($rs))
+        {
+            $this->data['name'] = $this->SfStr->getSafeString($r['name'],SAFE_STRING_TEXT);
+
+            $this->data['date_format'] = $this->SfStr->getSafeString($r['date_format'],SAFE_STRING_TEXT);
+            $this->data['created'] = $this->SfStr->getSafeString(date($this->CONF['date_format'],$r['created']),SAFE_STRING_TEXT);
+            $this->data['time_limit'] = $this->SfStr->getSafeString($r['time_limit'],SAFE_STRING_TEXT);
+            
+            //by Yan. set read_password, mail_subject and mail_receiver for editing.
+            $this->data['read_password'] = $this->SfStr->getSafeString($r['read_password'],SAFE_STRING_TEXT);
+            //by Yan. set key_desc for editing.
+            $this->data['key_desc'] = $this->SfStr->getSafeString($r['key_desc'],SAFE_STRING_TEXT);
+            
+            //by Yan. if mail_subject is empty, extract string from survey.name.
+            if(empty($r['mail_subject'])) {
+            	$splitRegEx = "";
+            	
+            	if( strstr($r['name'], '$') )
+            	  $splitRegEx = "/[\],\$]/";
+            	else
+            	  $splitRegEx = "/[\],\-]/";
+            	
+            	$aa=preg_split($splitRegEx, $r['name'] );
+            	if(sizeOf($aa)<=1) { 
+            		$this->data['mail_subject'] = "[報名]".$aa[0];
+            	} else { 
+            		$this->data['mail_subject'] = "[報名]".$aa[1];
+            	}
+            } else {
+            	$this->data['mail_subject'] = $this->SfStr->getSafeString($r['mail_subject'],SAFE_STRING_TEXT);
+            }
+            //by Yan. if mail_subject is empty, extract string from survey.name.
+            $this->data['mail_receiver'] = $this->SfStr->getSafeString($r['mail_receiver'],SAFE_STRING_TEXT);
+            
+            //by Yan. add on_top to make a survey on top of a list. (1:true, 0:false)
+            $this->data['on_top'] = $this->SfStr->getSafeString($r['on_top'],SAFE_STRING_TEXT);
+            //by Yan. add region to make a survey to be grouped by region (1:all, 2:taipei, 3:taichung, 4: kaohsuang)
+            $this->data['region'] = $this->SfStr->getSafeString($r['region'],SAFE_STRING_TEXT);
+            //by Yan. add default_referrer
+            $this->data['default_referrer'] = $this->SfStr->getSafeString($r['default_referrer'],SAFE_STRING_TEXT);
+            //by Yan. add display_state
+            $this->data['display_state'] = $this->SfStr->getSafeString($r['display_state'],SAFE_STRING_TEXT);
+
+
+            if($r['active'] == 1)
+            { $this->data['active_selected'] = ' checked'; }
+            else
+            { $this->data['inactive_selected'] = ' checked'; }
+
+            if($r['start_date'] == 0)
+            { //$this->data['start_date'] = '';
+            	$this->data['start_date'] = strtoupper(date('Y-m-d',$r['created']));
+            	}
+            else
+            { $this->data['start_date'] = strtoupper(date('Y-m-d',$r['start_date'])); }
+
+            if($r['end_date'] == 0)
+            { //$this->data['end_date'] = '';
+            	//by Yan: try to parse from title.
+            	$endDateFromTitle = false;
+            	$tempa = substr(strrchr($r['name'], "("), 1);
+            	if(strlen($tempa)!=0) {
+	                $date = $tempa;
+	                $dateBeginPos = strpos($tempa, "-");
+	                if($dateBeginPos !== false) {
+	                	$dateBeginPos += 1;
+	                	$tempa = substr($tempa, $dateBeginPos);
+	                }
+	                $this->data['end_date'] = $tempa;
+	                for($i=0; $i < strlen($tempa); $i++) {
+	                	if(!is_numeric($tempa[$i]) and ($tempa[$i] != "/")) {
+	                		$tempa = substr($tempa, 0, $i);
+	                		break;
+	                	}	
+	                }
+	                $this->data['end_date'] = $tempa;
+	                
+	                $pieces = explode("/", $tempa);
+	                
+	                if(count($pieces)>=2) {
+	                	$this->data['end_date'] = sprintf('%s-%02d-%02d', date('Y',$r['created']), $pieces[0], $pieces[1]);
+	                	$endDateFromTitle = true;
+	                }
+	            }
+                if(!$endDateFromTitle) {
+                  $this->data['end_date'] = strtoupper(date('Y-m-d',$r['created']));
+                }
+            	//Yan: try to parse from title. END;
+            }
+            else
+            { $this->data['end_date'] = strtoupper(date('Y-m-d',$r['end_date'])); }
+
+            switch($r['redirect_page'])
+            {
+                case 'index':
+                case '':
+                    $this->data['redirect_index'] = ' checked';
+                break;
+                case 'results':
+                    $this->data['redirect_results'] = ' checked';
+                break;
+                default:
+                    $this->data['redirect_custom'] = ' checked';
+                    $this->data['redirect_page_text'] = $this->SfStr->getSafeString($r['redirect_page'],SAFE_STRING_TEXT);
+                break;
+            }
+
+            //Set arrays for holding text mode values, options, and selected element to
+            //create drop down boxes
+            $survey_text_mode = array_slice($this->CONF['text_modes'],0,$this->CONF['survey_text_mode']+1);
+            $this->data['survey_text_mode_values'] = array_values($survey_text_mode);
+            $this->data['survey_text_mode_options'] = array_keys($survey_text_mode);
+            $this->data['survey_text_mode_selected'][$r['survey_text_mode']] = ' selected';
+
+            $user_text_mode = array_slice($this->CONF['text_modes'],0,$this->CONF['user_text_mode']+1);
+            $this->data['user_text_mode_values'] = array_values($user_text_mode);
+            $this->data['user_text_mode_options'] = array_keys($user_text_mode);
+            $this->data['user_text_mode_selected'][$r['user_text_mode']] = ' selected';
+
+            if(in_array(2,$this->data['survey_text_mode_options']) || in_array(2,$this->data['user_text_mode_options']))
+            { $this->data['show']['fullhtmlwarning'] = TRUE; }
+
+            $dh = opendir($this->CONF['path'] . '/templates');
+            while($file = readdir($dh))
+            {
+                if($file != '.' && $file != '..')
+                {
+                    $this->data['templates'][] = $this->SfStr->getSafeString($file,SAFE_STRING_TEXT);
+                    if($r['template'] == $file)
+                    { $this->data['selected_template'][] = ' selected'; }
+                    else
+                    { $this->data['selected_template'][] = ''; }
+                }
+            }
+
+            sort($this->data['templates']);
+        }
+        else
+        { $this->error("Survey #$sid does not exist."); return; }
+    }
 }
 
 ?>

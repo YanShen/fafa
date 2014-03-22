@@ -277,9 +277,14 @@ mail.replyToName="Carol Lee"
 mail.userName="carollee"
 mail.password="yan789"
 
+mail.fromAddr2="tinashen888@gmail.com"
+mail.fromName2="Tina"
+mail.replyTo2="tinashen888@gmail.com"
+mail.replyToName2="Tina"
+
 ;This configuration is for Testing.
 normal.yahooGroup.loginUrl="https://login.yahoo.com/config/login?"
-normal.yahooGroup.postUrl="http://hk.groups.yahoo.com/group/daadadad/post"
+normal.yahooGroup.postUrl="http://hk.groups.yahoo.com/api/v1/groups/daadadad/messages/post"
 normal.yahooGroup.account="guly0302"
 normal.yahooGroup.passwd="kai456"
 

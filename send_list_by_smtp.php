@@ -4,7 +4,6 @@
 	include('classes/main.class.php');
 	include('classes/special_results.class.php');
 
-
 	class SmtpMailSender {
 		var $smtpServer = "mail.fetnet.net";
 		var $charset = "UTF-8";
@@ -137,12 +136,21 @@ echo "mail.Host=".$mail->Host."<br>";
 	$ini = @parse_ini_file($ini_file);
 
 	$smtpServer = $ini["mail.smtpServer"];	//"mail.fetnet.net";
+	
+	//common 介紹人
 	$fromAddr = $ini["mail.fromAddr"];		//"krlee8@gmail.com";
 	$fromName = $ini["mail.fromName"];		//"李凱榕";
 	$replyTo = $ini["mail.replyTo"];		 //"krlee8@gmail.com";
 	$replyToName = $ini["mail.replyToName"];		//"李凱榕";
+	
+	//special 介紹人2
+	$fromAddr2 = $ini["mail.fromAddr2"];		//"tinashen888@gmail.com";
+	$fromName2 = $ini["mail.fromName2"];		//"Tina";
+	$replyTo2 = $ini["mail.replyTo2"];		    //"tinashen888@gmail.com";
+	$replyToName2 = $ini["mail.replyToName2"];		//"Tina";
+	
 	$userName = $ini["mail.userName"];
-  $password = $ini["mail.password"];
+    $password = $ini["mail.password"];
      
 	//Get Message
 	$survey = new UCCASS_Special_Results;
@@ -153,16 +161,29 @@ echo "mail.Host=".$mail->Host."<br>";
 	$mailer->smtpServer = $smtpServer;
 	$mailer->Username = $userName;  
 	$mailer->Password = $password; 
-	$mailer->fromAddr = $fromAddr;
-	$mailer->fromName = $fromName;
-	$mailer->replyTo = $replyTo;
-	$mailer->replyToName = replyToName;
 	$mailer->db = $survey->db;
+
+	$survey->loadProperties($_REQUEST['sid']);
+
+	//Decide sender email address by referrer
+	if($survey->data["default_referrer"] == "亞磊絲.泰吉華坦") {
+		$mailer->fromAddr = $fromAddr2;
+		$mailer->fromName = $fromName2;
+		$mailer->replyTo = $replyTo2;
+		$mailer->replyToName = $replyToName2;
+	} else {
+		$mailer->fromAddr = $fromAddr;
+		$mailer->fromName = $fromName;
+		$mailer->replyTo = $replyTo;
+		$mailer->replyToName = $replyToName;	
+	}
+	
+	echo "介紹人: ".$survey->data["default_referrer"]."<br>\n";
+	echo "寄件人: ".$mailer->fromAddr."<br>\n";
 
 	$mailer->updateSelQid();
 	
-	$result = $mailer->sendBySid($_REQUEST['sid'], $message);
-	
+	$result = $mailer->sendBySid($_REQUEST['sid'], $message);	
 			
 	if(!$result)
 	{
@@ -177,7 +198,6 @@ echo "mail.Host=".$mail->Host."<br>";
 	echo "信件內容：<br>";
 	echo $message; 
 	
-			
 	if(!$result)
 	{
 		echo "</font>";
