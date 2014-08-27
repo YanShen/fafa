@@ -98,8 +98,18 @@ class UCCASS_Special_Results extends UCCASS_Main
 	                //by Yan. added for selecting question id.
 					$idx = count($data['qid']);
 	                $data['qid'][$idx]['id'] = $r['qid'];
-	                $data['qid'][$idx]['checked'] = in_array($r['qid'], $savedSelQid)?'checked':'';
-	                
+					
+					//if there is no savedSelQid, then initial check/uncheck value has to be assigned separately in the lower part.
+					if(count($savedSelQid)==0) {
+						//This is the first time for this survey to save selected questions. set the initial values.
+						if( (!strstr($r['question'], 'E-mail(請務必填寫，以聯絡"重要"注意事項)')) &&  (!strstr($r['question'], '一年內曾參加過的市調公司')) ) {
+							$data['qid'][$idx]['checked'] = 'checked';
+						}
+					} else {
+					//if there is savedSelQid, the follow the data inside the array.
+						$data['qid'][$idx]['checked'] = in_array($r['qid'], $savedSelQid)?'checked':'';
+					}
+					
 	                $qid[$r['qid']] = $r['qid'];
 	              }
             }while($r = $rs->FetchRow($rs));
@@ -292,7 +302,7 @@ class UCCASS_Special_Results extends UCCASS_Main
 
 		//by Yan. this variable is for storing previous selected qid.
 		$savedSelQid = $this->getSavedSelQid($sid);
-
+		
 //        $query = "SELECT q.qid, q.question, s.name, s.user_text_mode, s.survey_text_mode, s.date_format
 //                  FROM {$this->CONF['db_tbl_prefix']}questions q, {$this->CONF['db_tbl_prefix']}surveys s
 //                  WHERE q.sid = $sid and s.sid = q.sid ORDER BY q.page, q.oid";
@@ -333,8 +343,18 @@ class UCCASS_Special_Results extends UCCASS_Main
 	                //by Yan. added for selecting question id.
 					$idx = count($data['qid']);
 	                $data['qid'][$idx]['id'] = $r['qid'];
-	                $data['qid'][$idx]['checked'] = in_array($r['qid'], $savedSelQid)?'checked':'';
-	                
+					
+					//if there is no savedSelQid, then initial check/uncheck value has to be assigned separately in the lower part.
+					if(count($savedSelQid)==0) {
+						//This is the first time for this survey to save selected questions. set the initial values.
+						if( (!strstr($r['question'], 'E-mail(請務必填寫，以聯絡"重要"注意事項)')) &&  (!strstr($r['question'], '一年內曾參加過的市調公司')) ) {
+							$data['qid'][$idx]['checked'] = 'checked';
+						}
+					} else {
+					//if there is savedSelQid, the follow the data inside the array.
+						$data['qid'][$idx]['checked'] = in_array($r['qid'], $savedSelQid)?'checked':'';
+					}
+
 	                $qid[$r['qid']] = $r['qid'];
 	              }
             }while($r = $rs->FetchRow($rs));
@@ -504,7 +524,17 @@ class UCCASS_Special_Results extends UCCASS_Main
 	                //by Yan. added for selecting question id.
 					$idx = count($data['qid']);
 	                $data['qid'][$idx]['id'] = $r['qid'];
-	                $data['qid'][$idx]['checked'] = in_array($r['qid'], $savedSelQid)?'checked':'';
+					
+					//if there is no savedSelQid, then initial check/uncheck value has to be assigned separately in the lower part.
+					if(count($savedSelQid)==0) {
+						//This is the first time for this survey to save selected questions. set the initial values.
+						if( (!strstr($r['question'], 'E-mail(請務必填寫，以聯絡"重要"注意事項)')) &&  (!strstr($r['question'], '一年內曾參加過的市調公司')) ) {
+							$data['qid'][$idx]['checked'] = 'checked';
+						}
+					} else {
+					//if there is savedSelQid, the follow the data inside the array.
+						$data['qid'][$idx]['checked'] = in_array($r['qid'], $savedSelQid)?'checked':'';
+					}
 	                
 	                $qid[$r['qid']] = $r['qid'];
 	              }
@@ -824,7 +854,17 @@ class UCCASS_Special_Results extends UCCASS_Main
 		                //by Yan. added for selecting question id.
 						$idx = count($data['qid']);
 		                $data['qid'][$idx]['id'] = $r['qid'];
-		                $data['qid'][$idx]['checked'] = in_array($r['qid'], $savedSelQid)?'checked':'';
+		                
+						//if there is no savedSelQid, then initial check/uncheck value has to be assigned separately in the lower part.
+						if(count($savedSelQid)==0) {
+							//This is the first time for this survey to save selected questions. set the initial values.
+							if( (!strstr($r['question'], 'E-mail(請務必填寫，以聯絡"重要"注意事項)')) &&  (!strstr($r['question'], '一年內曾參加過的市調公司')) ) {
+								$data['qid'][$idx]['checked'] = 'checked';
+							}
+						} else {
+						//if there is savedSelQid, the follow the data inside the array.
+							$data['qid'][$idx]['checked'] = in_array($r['qid'], $savedSelQid)?'checked':'';
+						}
 		                
 		                $qid[$r['qid']] = $r['qid'];
 		            }
