@@ -3,7 +3,7 @@
   <head>
     <meta http-equiv="content-type" content="text/html; charset={$conf.charset}">
     <meta name="description" content="">
-    <meta name="keywords" content="{$survey.name},市調,座談會,車馬費,外快,兼職,賺錢,工作,job,104">
+    <meta name="keywords" content="{$survey.name} ,市調,座談會,車馬費,外快,兼職,賺錢,工作,job,104">
     <title>{$survey.name}</title>
     <link rel="stylesheet" type="text/css" href="{$conf.template_html}/style.css"> 
     <script>
