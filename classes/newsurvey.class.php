@@ -155,7 +155,10 @@ class UCCASS_NewSurvey extends UCCASS_Main
         if(isset($_SESSION['new_survey']['survey_name']))
         { $this->smarty->assign('survey_name',$this->SfStr->getSafeString($_SESSION['new_survey']['survey_name'],SAFE_STRING_TEXT)); }
 
-        $query = "SELECT sid, name FROM {$this->CONF['db_tbl_prefix']}surveys WHERE hidden = 0 order by name ASC";
+//        $query = "SELECT sid, name FROM {$this->CONF['db_tbl_prefix']}surveys WHERE hidden = 0 order by name ASC";
+//List only ended withing 1 year, or template(sid=4) for copying
+          $query = "SELECT sid, name FROM {$this->CONF['db_tbl_prefix']}surveys WHERE hidden = 0 and (end_date > (UNIX_TIMESTAMP(now())- 60*60*24*365) or sid=4) order by name ASC";
+
         $rs = $this->db->Execute($query);
         if($rs === FALSE)
         { $this->error("Cannot select public surveys: " . $this->db->ErrorMsg()); return; }
