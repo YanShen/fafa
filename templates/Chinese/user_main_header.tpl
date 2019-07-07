@@ -5,7 +5,7 @@
     <meta name="description" content="">
 	<meta property="og:title" content="{$survey.name}" />
 	<meta property="og:type" content="website" />
-	<meta property="og:image" content="{$survey.image_info.image_url}" />
+	<meta property="og:image" content="{$conf.site_url}{$survey.image_info.image_url}" />
 	<meta property="og:site_name" content=">我愛發發~市調活動網</meta>
     <meta name="keywords" content="{$survey.name} ,市調,座談會,車馬費,外快,兼職,賺錢,工作,job,104">
     <title>{$survey.name}</title>

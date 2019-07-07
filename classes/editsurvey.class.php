@@ -527,7 +527,7 @@ class UCCASS_EditSurvey extends UCCASS_Main
 					unlink($filenames);
 				}
 					
-				if($this->_generateSurveyImage(1200, 900, $target_file, $uploadedFile["tmp_name"], $surveyName)) {
+				if($this->_generateSurveyImage(1200, 628, $target_file, $uploadedFile["tmp_name"], $surveyName)) {
 //					echo "The file ". basename( $uploadedFile["name"]). " has been uploaded and resized.";
 				} else {
 					$error[] = "Resizing file to survey image file path failed.";
@@ -618,9 +618,9 @@ class UCCASS_EditSurvey extends UCCASS_Main
 //echo $text_width . " " . $text_height . " " . $image_width . " " . $image_height;
 //exit;
 		// add text
-		imagettftext($tmp, $size1, 0, $x + $txtbgrect[0], $y + $txtbgrect[1] - $size1, $black, $font, $text1);
+		imagettftext($tmp, $size1, 0, $x + $txtbgrect[0], $y + $txtbgrect[1] - ($size1/1.6), $black, $font, $text1);
 		
-		$text2 = $this->CONF['site_url'];
+		$text2 = $this->CONF['site_url_on_image'];
 		$size2 = 20;
 		$skyblue = imagecolorallocate($tmp, 60, 60, 150);
 		
@@ -631,7 +631,7 @@ class UCCASS_EditSurvey extends UCCASS_Main
 		$x = ($image_width - $text_width) / 2;
 
 		// add text
-		imagettftext($tmp, $size2, 0, $x + $txtbgrect[0], $y + $txtbgrect[1] + $size1, $skyblue, $font, $text2);
+		imagettftext($tmp, $size2, 0, $x + $txtbgrect[0], $y + $txtbgrect[1] + ($size1/1.6), $skyblue, $font, $text2);
 		
 		if (file_exists($targetFile)) {
 				unlink($targetFile);

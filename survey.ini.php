@@ -309,6 +309,7 @@ survey_image_url_path = "/ms/survey_images"
 
 ; Site URL. Printed on Images
 ; ex: "WWW.5iFAFA.COM 我愛發發~市調活動網"
-site_url = "WWW.5iFAFA.COM 我愛發發~市調活動網"
+site_url_on_image = "WWW.5iFAFA.COM 我愛發發~市調活動網"
 
-
+; Site url
+site_url=http://www.5ifafa.com
