@@ -19,6 +19,21 @@
          範例:<span style="color:red">[</span>台北<span style="color:red">]</span> 清潔用品座談會<span style="color:red">-</span>車馬費2000<span style="color:blue">(</span>N<span style="color:red">-</span>4/9<span style="color:blue">)</span>
       </div>
 
+	  <div class="whitebox">圖片</div>
+
+      <div class="indented_cell">
+	    {if $data.survey_image_url != "" }
+			<img id="surveyImage" width="600"> <br>
+			<script> document.getElementById("surveyImage").src="{$data.survey_image_url}?"+Date.now();</script>
+		{/if}
+        <input type="file" name="survey_image" id="survey_image"> <input type="submit" name="edit_survey_submit" value="儲存"><br>
+		<ul>
+			<li><a href="https://unsplash.com/" target="_blank">Unsplash free images</a> </li>
+			<li><a href="https://www.pexels.com/" target="_blank">Pixels free images</a> </li>
+			<li><a href="https://pixabay.com/" target="_blank">Pixabay free images</a> </li>
+		</ul>
+	  </div>
+	  
       <div class="whitebox">讀取密碼</div>
       
       <div class="indented_cell">
@@ -123,21 +138,6 @@
       <div class="indented_cell">
         <textarea name="key_desc" id="keyDesc" cols="40" rows="5">{$data.key_desc}</textarea>
       </div>
-
-	  <div class="whitebox">圖片</div>
-
-      <div class="indented_cell">
-	    {if $data.survey_image_url != "" }
-			<img id="surveyImage" width="600"> <br>
-			<script> document.getElementById("surveyImage").src="{$data.survey_image_url}?"+Date.now();</script>
-		{/if}
-        <input type="file" name="survey_image" id="survey_image"> <input type="submit" name="edit_survey_submit" value="儲存"><br>
-		<ul>
-			<li><a href="https://unsplash.com/" target="_blank">Unsplash free images</a> </li>
-			<li><a href="https://www.pexels.com/" target="_blank">Pixels free images</a> </li>
-			<li><a href="https://pixabay.com/" target="_blank">Pixabay free images</a> </li>
-		</ul>
-	  </div>
 	  
       <div class="whitebox">Survey Template <a href="{$conf.html}/docs/index.html#ep_template">[?]</a></div>
 
