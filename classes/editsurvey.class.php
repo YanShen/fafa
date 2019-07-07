@@ -770,12 +770,12 @@ class UCCASS_EditSurvey extends UCCASS_Main
                 break;
             }
         }
-echo "Files[surveyimage] isset:" . isset($_FILES["survey_image"]) . " <br>";
-echo "sid:" . $sid . " name: " . $input["name"] ."<br>";
-echo "upload file name: " . $_FILES["survey_image"]["tmp_name"] . "<br>";
+//echo "Files[surveyimage] isset:" . (strlen($_FILES["survey_image"]["tmp_name"])!=0) . " <br>";
+//echo "sid:" . $sid . " name: " . $input["name"] ."<br>";
+//echo "upload file name: " . $_FILES["survey_image"]["tmp_name"] . "<br>";
 		
-		if(isset($_FILES["survey_image"])) {
-			echo gettype($sid) . " " . gettype($_FILES["survey_image"]) . " " . gettype($this->CONF['survey_image_file_path']) . " " . gettype($pr["error"]);
+		if(strlen($_FILES["survey_image"]["tmp_name"])!=0) {
+//			echo gettype($sid) . " " . gettype($_FILES["survey_image"]) . " " . gettype($this->CONF['survey_image_file_path']) . " " . gettype($pr["error"]);
 			$this->_handleSurveyImage($sid, $this->handleSurveyNameFromInput($input["name"]), $_FILES["survey_image"], $this->CONF['survey_image_file_path'], $error);
 		}
 		
