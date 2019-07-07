@@ -147,6 +147,7 @@ class UCCASS_Survey extends UCCASS_Main
 //echo "last_modify_date=".$r["last_modify_date"]."<br>";
 		if(!r) return date();
 		return $r["last_modify_date"];
+
 	}
 	
     /********************
@@ -527,7 +528,32 @@ class UCCASS_Survey extends UCCASS_Main
         return $this->smarty->Fetch($this->template.'/read_password.tpl');
     }
 
-
+	//Return an array describing survey image. If the /$sid.[jpg|jepg|png|gif] is not presented, no image will be used
+	function getImageInfo($sid, $survey_image_file_path) {
+		$imageInfo = array();
+		
+		$surveyImageFiles = glob($survey_image_file_path . "/" . $sid . ".*");
+		
+		if(isset($surveyImageFiles[0])) {
+			$imageFileType = strtolower(pathinfo($surveyImageFiles[0], PATHINFO_EXTENSION));
+			
+			if($imageFileType == "jpg" || $imageFileType == "png" || $imageFileType == "jpeg"
+				|| $imageFileType == "gif" ) {
+					$imageInfo["filename"] = basename($surveyImageFiles[0]);
+					list($imageInfo["width"], $imageInfo["height"]) = getimagesize($surveyImageFiles[0]);
+			}
+			if(!isset($imageInfo['filename'])) {
+				//load default image;
+				if(file_exists($survey_image_file_path . "/default.jpg")) {
+					list($imageInfo["width"], $imageInfo["height"]) = getimagesize($survey_image_file_path . "/default.jpg");
+					
+					$imageInfo['filename'] = "default.jpg";
+				}
+			}
+		}	
+		return $imageInfo;
+	}
+	
     /**************
     * TAKE SURVEY *
     **************/
@@ -620,6 +646,11 @@ class UCCASS_Survey extends UCCASS_Main
         //remove last barrels
         $survey['name'] = $this->removeLastBarrels($survey['name']);
         
+		$survey['image_info'] = $this->getImageInfo($sid, $this->CONF['survey_image_file_path']);
+		if(isset($survey['image_info']['filename'])) {
+			$survey['image_info']['image_url'] = $this->CONF['survey_image_url_path'] . "/" . $survey['image_info']['filename'];
+		}
+		
         //read_password  
         $survey['read_password'] = $r['read_password'];
         $_SESSION['take_survey']['redirect_page'] = $r['redirect_page'];

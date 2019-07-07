@@ -1,4 +1,4 @@
-﻿<div class="whitebox"> 
+<div class="whitebox"> 
 說明
 </div>
 <div class="survey_desc">

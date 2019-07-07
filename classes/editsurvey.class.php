@@ -56,6 +56,35 @@ define('WORDCODE_NUMWORDS',2);
 
 class UCCASS_EditSurvey extends UCCASS_Main
 {
+		function handleSurveyNameFromInput($name) {
+			$leftPos = 0;
+			if($name[0] == "'") {
+				if($name[1] == "*") {
+					$leftPos = 2;
+				} else {
+					$leftPos = 1;
+				}
+			}
+			$length = strlen($name);
+			if($name[$length-1] == "'") {
+				$length = $length-1;
+			}
+			$str = substr($name, $leftPos, $length - $leftPos);
+
+			return $this->removeLastBarrels($str);
+		}
+		
+		function removeLastBarrels($str) {
+			$leftPos = strrpos($str, "("); 
+			if($leftPos) {
+			  $rightPos = strrpos($str, ")");
+			  if($rightPos) {
+			   $str = substr($str, 0, $leftPos);
+			  }  
+			}
+			return $str;
+		}
+
     //Load configuration and initialize data variable
     function UCCASS_EditSurvey()
     {
@@ -180,7 +209,7 @@ class UCCASS_EditSurvey extends UCCASS_Main
                 }
             break;
         }
-
+		
         $this->smarty->assign_by_ref('data',$this->data);
 
         //Retrieve template that shows links for edit survey page
@@ -432,6 +461,187 @@ class UCCASS_EditSurvey extends UCCASS_Main
         { $this->setMessage('Update Error',implode('<br />',$pr['error']),MSGTYPE_ERROR); }
     }
 
+	//Handle survey image (String $SID, Array $_FILES["file"], Array $pr["error"])
+	function _handleSurveyImage($sid, $surveyName, $uploadedFile, $survey_image_file_path, &$error) {
+		//$uploadedFile = $_FILES["survey_image"];
+		//$survey_image_file_path = $this->CONF['survey_image_file_path'];
+		
+		
+		//When all data is updated, processing survey image
+		$imageFileType = strtolower(pathinfo($uploadedFile["name"], PATHINFO_EXTENSION));
+		
+		$target_file = $survey_image_file_path . "/". $sid . "." . $imageFileType;
+		$uploadOk = 1;
+		
+//echo "<br>";
+//echo "uploaded file: " . $uploadedFile["tmp_name"] . "<br>";
+//echo "survey_image_file_path: " . $survey_image_file_path . "<br>";		
+//echo $target_file . "<br>";
+		
+		// Check if image file is a actual image or fake image
+		if(isset($uploadedFile["name"])) {
+			$check = getimagesize($uploadedFile["tmp_name"]);
+//echo "mime: " . $check["mime"] . "<br>";
+			if($check != false) {
+//echo "File is an image - " . $check["mime"] . ".";
+				$uploadOk = 1;
+			} else {
+				$error[] = "File is not an image.";
+				$uploadOk = 0;
+			}
+
+//echo "file temp name=".$uploadedFile["tmp_name"]."<br>";
+//echo "target_file=".$target_file."<br>";
+//echo "1 uploadOK=".$uploadOk."<br>";
+
+			// Check if file already exists
+			//if (file_exists($target_file)) {
+			//	echo "Sorry, file already exists.";
+			//	$uploadOk = 0;
+			//}
+		//echo "2 uploadOK=".$uploadOk."<br>";
+
+			// Check file size
+			if ($uploadedFile["size"] > 10000000) {
+				$error[] = "The uploaded file is too large (>10MB)";
+				$uploadOk = 0;
+			}
+//echo "filesize=".$uploadedFile["size"]."<br>";
+//echo "3 uploadOK=".$uploadOk."<br>";
+		
+			// Allow certain file formats
+			if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
+			&& $imageFileType != "gif" ) {
+				$error[] = "Only JPG, JPEG, PNG & GIF files are allowed.";
+				$uploadOk = 0;
+			}
+//echo "4 uploadOK=".$uploadOk."<br>";
+			// Check if $uploadOk is set to 0 by an error
+			if ($uploadOk == 0) {
+				$error[] = "Error happened. The file was not uploaded.";
+			// if everything is ok, try to upload file
+			} else {
+				//delete target files named like /sid.* (.jpg, .jpeg, .png, .gif)
+				foreach (glob($survey_image_file_path . "/" . $sid . ".*") as $filenames) {
+//					echo "$filenames size " . filesize($filenames) . "<br>\n";
+					unlink($filenames);
+				}
+					
+				if($this->_generateSurveyImage(1200, 900, $target_file, $uploadedFile["tmp_name"], $surveyName)) {
+//					echo "The file ". basename( $uploadedFile["name"]). " has been uploaded and resized.";
+				} else {
+					$error[] = "Resizing file to survey image file path failed.";
+				}
+				
+
+			}
+//echo "5 uploadOK=".$uploadOk."<br>";
+		}
+//exit();
+		return true;
+	}
+	
+	function _generateSurveyImage($newWidth, $newHeight, $targetFile, $originalFile, $surveyName) {
+		$tmpWidth = $newWidth;
+		$tmpHeight = $newHeight;
+		
+		$info = getimagesize($originalFile);
+		$mime = $info['mime'];
+
+		switch ($mime) {
+			case 'image/jpeg':
+				$image_create_func = 'imagecreatefromjpeg';
+				$image_save_func = 'imagejpeg';
+				$new_image_ext = 'jpg';
+				break;
+
+			case 'image/png':
+				$image_create_func = 'imagecreatefrompng';
+				$image_save_func = 'imagepng';
+				$new_image_ext = 'png';
+				break;
+
+			case 'image/gif':
+				$image_create_func = 'imagecreatefromgif';
+				$image_save_func = 'imagegif';
+				$new_image_ext = 'gif';
+				break;
+
+			default: 
+				return FALSE; //Unknown image type
+		}
+
+		$img = $image_create_func($originalFile);
+		list($width, $height) = getimagesize($originalFile);
+		
+		//Resize
+		$oratio = $width / $height;
+		$nratio = $newWidth / $newHeight;
+		
+		if($nratio > $oratio) {
+			$tmpHeight = $height * ($tmpWidth / $width);
+		} else {
+			$tmpWidth = $width * ($tmpHeight / $height);
+		}
+		
+		$tmp = imagecreatetruecolor($tmpWidth, $tmpHeight);
+		imagecopyresampled($tmp, $img, 0, 0, 0, 0, $tmpWidth, $tmpHeight, $width, $height);
+		
+		//Crop
+		$tmp2 = imagecreatetruecolor($newWidth, $newHeight);
+		imagecopyresampled($tmp2, $tmp, 0, 0, 0, 0, $newWidth, $newHeight, $newWidth, $newHeight);
+		$tmp = $tmp2;
+
+		$white = imagecolorallocatealpha($tmp, 255, 255, 255, 20);
+
+		// Draw a white rectangle. 
+		$txtbgrect = array(0, round($newHeight * 0.7), $newWidth, round($newHeight * 0.9));
+		imagefilledrectangle($tmp, $txtbgrect[0], $txtbgrect[1], $txtbgrect[2], $txtbgrect[3], $white);
+		
+		//Center align text
+		$black = imagecolorallocate($tmp, 0, 0, 0);
+
+		// text, font and size to draw
+		$text1 = $surveyName;
+		
+		$font = 'msjhbd.ttc';
+		$size1 = 32;
+
+		// determine the size of the text so we can center it
+		$box = imagettfbbox($size1, 0, $font, $text1);
+		$text_width = abs($box[2]) - abs($box[0]);
+		$text_height = abs($box[5]) - abs($box[3]);
+		$image_width = $txtbgrect[2] - $txtbgrect[0];
+		$image_height = $txtbgrect[3] - $txtbgrect[1];
+		$x = ($image_width - $text_width) / 2;
+		$y = ($image_height + $text_height) / 2;
+//echo $text_width . " " . $text_height . " " . $image_width . " " . $image_height;
+//exit;
+		// add text
+		imagettftext($tmp, $size1, 0, $x + $txtbgrect[0], $y + $txtbgrect[1] - $size1, $black, $font, $text1);
+		
+		$text2 = $this->CONF['site_url'];
+		$size2 = 20;
+		$skyblue = imagecolorallocate($tmp, 60, 60, 150);
+		
+		// determine the size of the text so we can center it
+		$box = imagettfbbox($size2, 0, $font, $text2);
+		$text_width = abs($box[2]) - abs($box[0]);
+		$image_width = $txtbgrect[2] - $txtbgrect[0];
+		$x = ($image_width - $text_width) / 2;
+
+		// add text
+		imagettftext($tmp, $size2, 0, $x + $txtbgrect[0], $y + $txtbgrect[1] + $size1, $skyblue, $font, $text2);
+		
+		if (file_exists($targetFile)) {
+				unlink($targetFile);
+		}
+		$image_save_func($tmp, "$targetFile");
+//echo $text_width . " " . $text_height . " " . $image_width . " " . $image_height;
+//exit;		
+		return TRUE;
+	}
+	
     // VALIDATE NEW PROPERTY DATA SUBMITTED BY USER //
     function _validateProperties($sid)
     {
@@ -560,7 +770,15 @@ class UCCASS_EditSurvey extends UCCASS_Main
                 break;
             }
         }
-
+echo "Files[surveyimage] isset:" . isset($_FILES["survey_image"]) . " <br>";
+echo "sid:" . $sid . " name: " . $input["name"] ."<br>";
+echo "upload file name: " . $_FILES["survey_image"]["tmp_name"] . "<br>";
+		
+		if(isset($_FILES["survey_image"])) {
+			echo gettype($sid) . " " . gettype($_FILES["survey_image"]) . " " . gettype($this->CONF['survey_image_file_path']) . " " . gettype($pr["error"]);
+			$this->_handleSurveyImage($sid, $this->handleSurveyNameFromInput($input["name"]), $_FILES["survey_image"], $this->CONF['survey_image_file_path'], $error);
+		}
+		
         $retval = array('input'=>$input, 'error' => $error);
 
         return $retval;
@@ -848,6 +1066,16 @@ class UCCASS_EditSurvey extends UCCASS_Main
             	}
             else
             { $this->data['start_date'] = strtoupper(date('Y-m-d',$r['start_date'])); }
+			
+			//Load Image from survey image path. To find sid as image file name
+			$this->data['survey_image_url']='';
+			if(file_exists($this->CONF['survey_image_file_path'] . "/" . $sid . ".jpg")) {
+				$this->data['survey_image_url'] = $this->CONF['survey_image_url_path'] . "/" . $sid . ".jpg";
+			} else if (file_exists($this->CONF['survey_image_file_path'] . "/" . $sid . ".jpeg")) {
+				$this->data['survey_image_url'] = $this->CONF['survey_image_url_path'] . "/" . $sid . ".jpeg";
+			} else if (file_exists($this->CONF['survey_image_file_path'] . "/" . $sid . ".png")) {
+				$this->data['survey_image_url'] = $this->CONF['survey_image_url_path'] . "/" . $sid . ".png";
+			}
 
             if($r['end_date'] == 0)
             { //$this->data['end_date'] = '';

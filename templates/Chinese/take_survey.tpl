@@ -54,13 +54,18 @@
   </tr>
 </table>
 Site Search Google -->
-
 <form method="POST" action="survey.php" style="display: inline">
   <input type="hidden" name="sid" value="{$survey.sid}">
 <table class="list_table2">      
   <tr>
-    <td class="div_title">{$survey.name}</td>
-  </tr>
+    <td id="surveyImageContainer" style="position:relative">
+	{if isset($survey.image_info.filename)}
+		<img id="surveyImage" src="{$survey.image_info.image_url}" width="100%">
+	{else}
+		{$survey.name}
+	{/if}
+	</td>
+	</tr>
     <tr>
       <td>
         {*MESSAGE*}

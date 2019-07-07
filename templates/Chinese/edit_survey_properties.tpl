@@ -5,7 +5,7 @@
 <script type="text/javascript" src="scripts/lang/calendar-en.js"></script>
 <script type="text/javascript" src="scripts/calendar-setup.js"></script>
 
-    <form method="POST" action="{$conf.html}/edit_survey.php">
+    <form method="POST" action="{$conf.html}/edit_survey.php" enctype="multipart/form-data">
       <div style="text-align:center">
         <input type="submit" name="edit_survey_submit" value="儲存">
       </div>
@@ -50,6 +50,7 @@
         <select style="width:150px" name="default_referrer">
          <option value=""></option>
 		 <option value="李凱榕(0955-215636)" {if $data.default_referrer == "李凱榕(0955-215636)"}selected{/if}>李凱榕(0955-215636)</option>
+		 <option value="沈陳秋花" {if $data.default_referrer == "沈陳秋花"}selected{/if}>沈陳秋花</option>
 		 <option value="亞磊絲.泰吉華坦" {if $data.default_referrer == "亞磊絲.泰吉華坦"}selected{/if}>亞磊絲.泰吉華坦</option>
 		 <option value="李錢玲珍" {if $data.default_referrer == "李錢玲珍"}selected{/if}>李錢玲珍</option>
 		 <option value="許定曄" {if $data.default_referrer == "許定曄"}selected{/if}>許定曄</option>
@@ -123,6 +124,21 @@
         <textarea name="key_desc" id="keyDesc" cols="40" rows="5">{$data.key_desc}</textarea>
       </div>
 
+	  <div class="whitebox">圖片</div>
+
+      <div class="indented_cell">
+	    {if $data.survey_image_url != "" }
+			<img id="surveyImage" width="600"> <br>
+			<script> document.getElementById("surveyImage").src="{$data.survey_image_url}?"+Date.now();</script>
+		{/if}
+        <input type="file" name="survey_image" id="survey_image"> <input type="submit" name="edit_survey_submit" value="儲存"><br>
+		<ul>
+			<li><a href="https://unsplash.com/" target="_blank">Unsplash free images</a> </li>
+			<li><a href="https://www.pexels.com/" target="_blank">Pixels free images</a> </li>
+			<li><a href="https://pixabay.com/" target="_blank">Pixabay free images</a> </li>
+		</ul>
+	  </div>
+	  
       <div class="whitebox">Survey Template <a href="{$conf.html}/docs/index.html#ep_template">[?]</a></div>
 
       <div class="indented_cell">
