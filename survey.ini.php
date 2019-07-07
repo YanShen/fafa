@@ -277,6 +277,7 @@ mail.replyToName="Carol Lee"
 mail.userName="carollee"
 mail.password="yan789"
 
+; Special sender email address
 mail.fromAddr2="tinashen888@gmail.com"
 mail.fromName2="Tina"
 mail.replyTo2="tinashen888@gmail.com"
@@ -298,6 +299,16 @@ vip.yahooGroup.postUrl="http://hk.groups.yahoo.com/group/5ifafaVIP/post"
 vip.yahooGroup.account="guly0302"
 vip.yahooGroup.passwd="kai456"
 
+; File Path to uploaded images
+; ex: "C:/Program Files/Apache Group/Apache2/htdocs/ms/survey_images"
+survey_image_file_path = "C:/Program Files/Apache Group/Apache2/htdocs/ms/survey_images"
 
+; URL path to uploaded images 
+; ex: /ms/survey_images
+survey_image_url_path = "/ms/survey_images"
+
+; Site URL. Printed on Images
+; ex: "WWW.5iFAFA.COM 我愛發發~市調活動網"
+site_url = "WWW.5iFAFA.COM 我愛發發~市調活動網"
 
 
