@@ -56,15 +56,20 @@
 Site Search Google -->
 <form method="POST" action="survey.php" style="display: inline">
   <input type="hidden" name="sid" value="{$survey.sid}">
-<table class="list_table2">      
+<table class="list_table2">
   <tr>
-    <td id="surveyImageContainer" style="position:relative">
-	{if isset($survey.image_info.filename)}
-		<img id="surveyImage" src="{$survey.image_info.image_url}" width="100%">
-	{else}
-		{$survey.name}
-	{/if}
+	<td>
+		<div class="whitebox"> 
+			{$survey.name}
+		</div>	
 	</td>
+	{if isset($survey.image_info.filename)}
+	<tr>
+		<td style="position:relative">
+			<img id="surveyImage" src="{$survey.image_info.image_url}" width="100%">
+		</td>
+	</tr>
+	{/if}
 	</tr>
     <tr>
       <td>
