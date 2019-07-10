@@ -58,11 +58,6 @@ Site Search Google -->
   <input type="hidden" name="sid" value="{$survey.sid}">
 <table class="list_table2">
   <tr>
-	<td>
-		<div class="whitebox"> 
-			{$survey.name}
-		</div>	
-	</td>
 	{if isset($survey.image_info.filename)}
 	<tr>
 		<td style="position:relative">

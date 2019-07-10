@@ -1089,6 +1089,8 @@ class UCCASS_Survey extends UCCASS_Main
                         { $no_counts++; }
 
                         $this->smarty->assign_by_ref('q',$q);
+						//To dipslay survey name for type N (description)
+						$this->smarty->assign('survey', $survey);
 
 
                         if($end_matrix)
