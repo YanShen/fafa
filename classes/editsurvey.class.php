@@ -527,7 +527,7 @@ class UCCASS_EditSurvey extends UCCASS_Main
 					unlink($filenames);
 				}
 					
-				if($this->_generateSurveyImage(1200, 628, $target_file, $uploadedFile["tmp_name"], $surveyName)) {
+				if($this->_generateSurveyImage(1200, 800, $target_file, $uploadedFile["tmp_name"], $surveyName)) {
 //					echo "The file ". basename( $uploadedFile["name"]). " has been uploaded and resized.";
 				} else {
 					$error[] = "Resizing file to survey image file path failed.";
