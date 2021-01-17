@@ -13,15 +13,6 @@
       }
 		{/literal}
     </script>
-	<!-- Global site tag (gtag.js) - Google Analytics -->
-	<script async src="https://www.googletagmanager.com/gtag/js?id=G-ZVH3WPSRGX"></script>
-	<script>
-	  window.dataLayer = window.dataLayer || [];
-	  function gtag(){dataLayer.push(arguments);}
-	  gtag('js', new Date());
-
-	  gtag('config', 'G-ZVH3WPSRGX');
-	</script>
   </head>
   <body background="" onload="if(changePageTitle)changePageTitle();">
 <table><tr><td>
