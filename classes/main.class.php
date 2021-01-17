@@ -351,6 +351,23 @@ class UCCASS_Main
         return $this->smarty->fetch($this->template.'/user_main_header.tpl') . $this->showMessage();
     }
 
+	
+    /*********
+    * HEADER *
+    *********/
+    function com_newsletter_header($title='')
+    {
+        //Assign title of page to template
+        //and return header template
+        if(empty($title))
+        { $values['title'] = $this->CONF['site_name']; }
+        else
+        { $values['title'] = $this->SfStr->getSafeString($title,SAFE_STRING_TEXT); }
+
+        $this->smarty->assign_by_ref('values',$values);
+        return $this->smarty->fetch($this->template.'/newsletter_header.tpl') . $this->showMessage();
+    }
+	
     /*********
     * FOOTER *
     *********/
@@ -363,13 +380,22 @@ class UCCASS_Main
         return $this->smarty->fetch($this->template.'/main_footer.tpl');
     }
 
-	    function user_footer()
+	function user_footer()
     {
         //Close connection to database
         $this->db->Close();
 
         //Return footer template
         return $this->smarty->fetch($this->template.'/user_main_footer.tpl');
+    }
+	
+	function newsletter_footer()
+    {
+        //Close connection to database
+        $this->db->Close();
+
+        //Return footer template
+        return $this->smarty->fetch($this->template.'/newsletter_footer.tpl');
     }
 	
     /*************************

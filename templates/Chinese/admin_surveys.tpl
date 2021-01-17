@@ -29,6 +29,7 @@ function openNewListInNewBrowsers() {
         &nbsp;|&nbsp;[<a href="{$conf.html}/new_survey.php">建立</a>]
         &nbsp;|&nbsp;[<a href="{$conf.html}/black_list.php">黑名單</a>]
         &nbsp;|&nbsp;[<a href="{$conf.html}/block_list.php">禁止名單</a>]
+		&nbsp;|&nbsp;[<a href="{$conf.html}/latest_surveys_for_newsletter.php">電子報用列表</a>]
       {/section}
 	  </td>
 	</tr>

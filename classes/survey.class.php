@@ -268,7 +268,6 @@ class UCCASS_Survey extends UCCASS_Main
 	/************************************************
     * LATEST SURVEYS2 - without separated by region *
     *************************************************/
-    //function latest_surveys()
     function latest_surveys2($tplName)
     {
 	    $withinDays = 7;
