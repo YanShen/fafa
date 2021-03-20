@@ -19,6 +19,22 @@
        }
 		{/literal}
     </script>
+	
+	<!-- MailerLite Universal -->
+	<script>
+	{literal}
+	(function(m,a,i,l,e,r){ m['MailerLiteObject']=e;function f(){
+	var c={ a:arguments,q:[]};var r=this.push(c);return "number"!=typeof r?r:f.bind(c.q);}
+	f.q=f.q||[];m[e]=m[e]||f.bind(f.q);m[e].q=m[e].q||f.q;r=a.createElement(i);
+	var _=a.getElementsByTagName(i)[0];r.async=1;r.src=l+'?v'+(~~(new Date().getTime()/1000000));
+	_.parentNode.insertBefore(r,_);})(window, document, 'script', 'https://static.mailerlite.com/js/universal.js', 'ml');
+
+	var ml_account = ml('accounts', '2746513', 'r5m5p3p5c6', 'load');
+	{/literal}
+	</script>
+	
+	<!-- End MailerLite Universal -->
+
     <!-- Global site tag (gtag.js) - Google Analytics -->
 	<script async src="https://www.googletagmanager.com/gtag/js?id=G-ZVH3WPSRGX"></script>
 	<script>
@@ -61,7 +77,9 @@
   <div><a href="available_surveys.php"><li class="menuitem">全部活動</li></a></div>
   <!-- <div><a href="announcement.php"><li class="menuitem">注意事項</li></a></div> -->
   <div><a href="http://www.facebook.com/5ifafa88"><li class="menuitem">粉絲團</li></a></div>
-  <div><a href="http://hk.groups.yahoo.com/group/MONEY_MONEY/join"><li class="menuitem">訂閱電子報</li></a></div>
+  <div> <!--<a href="javascript:;" onclick="ml_account('webforms', '3730990', 'v8r8b9', 'show')"><li class="menuitem">訂閱電子報</li></a> -->
+  <div class="ml-form-embed" data-account="2746513:r5m5p3p5c6" data-form="3730990:v8r8b9"></div>
+  </div>
   <hr/>
   <div align="center">
 
