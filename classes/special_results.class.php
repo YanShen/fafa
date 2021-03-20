@@ -102,7 +102,8 @@ class UCCASS_Special_Results extends UCCASS_Main
 					//if there is no savedSelQid, then initial check/uncheck value has to be assigned separately in the lower part.
 					if(count($savedSelQid)==0) {
 						//This is the first time for this survey to save selected questions. set the initial values.
-						if( (!strstr($r['question'], 'E-mail(請務必填寫，以聯絡"重要"注意事項)')) &&  (!strstr($r['question'], '一年內曾參加過的市調公司')) ) {
+						if( (!strstr($r['question'], 'E-mail(請務必填寫，以聯絡"重要"注意事項)')) &&  (!strstr($r['question'], '一年內曾參加過的市調公司'))
+							&& (!strstr($r['question'], '是否同意訂閱電子報'))) {
 							$data['qid'][$idx]['checked'] = 'checked';
 						}
 					} else {
@@ -347,7 +348,8 @@ class UCCASS_Special_Results extends UCCASS_Main
 					//if there is no savedSelQid, then initial check/uncheck value has to be assigned separately in the lower part.
 					if(count($savedSelQid)==0) {
 						//This is the first time for this survey to save selected questions. set the initial values.
-						if( (!strstr($r['question'], 'E-mail(請務必填寫，以聯絡"重要"注意事項)')) &&  (!strstr($r['question'], '一年內曾參加過的市調公司')) ) {
+						if( (!strstr($r['question'], 'E-mail(請務必填寫，以聯絡"重要"注意事項)')) &&  (!strstr($r['question'], '一年內曾參加過的市調公司'))
+							&& (!strstr($r['question'], '是否同意訂閱電子報'))) {
 							$data['qid'][$idx]['checked'] = 'checked';
 						}
 					} else {
@@ -528,7 +530,8 @@ class UCCASS_Special_Results extends UCCASS_Main
 					//if there is no savedSelQid, then initial check/uncheck value has to be assigned separately in the lower part.
 					if(count($savedSelQid)==0) {
 						//This is the first time for this survey to save selected questions. set the initial values.
-						if( (!strstr($r['question'], 'E-mail(請務必填寫，以聯絡"重要"注意事項)')) &&  (!strstr($r['question'], '一年內曾參加過的市調公司')) ) {
+						if( (!strstr($r['question'], 'E-mail(請務必填寫，以聯絡"重要"注意事項)')) &&  (!strstr($r['question'], '一年內曾參加過的市調公司'))
+							&& (!strstr($r['question'], '是否同意訂閱電子報'))) {
 							$data['qid'][$idx]['checked'] = 'checked';
 						}
 					} else {
@@ -858,7 +861,8 @@ class UCCASS_Special_Results extends UCCASS_Main
 						//if there is no savedSelQid, then initial check/uncheck value has to be assigned separately in the lower part.
 						if(count($savedSelQid)==0) {
 							//This is the first time for this survey to save selected questions. set the initial values.
-							if( (!strstr($r['question'], 'E-mail(請務必填寫，以聯絡"重要"注意事項)')) &&  (!strstr($r['question'], '一年內曾參加過的市調公司')) ) {
+							if( (!strstr($r['question'], 'E-mail(請務必填寫，以聯絡"重要"注意事項)')) &&  (!strstr($r['question'], '一年內曾參加過的市調公司'))
+								&& (!strstr($r['question'], '是否同意訂閱電子報'))) {
 								$data['qid'][$idx]['checked'] = 'checked';
 							}
 						} else {
