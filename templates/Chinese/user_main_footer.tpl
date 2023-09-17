@@ -2,7 +2,7 @@
 <div class="right_ad">
 	<!--long line friend-->
 	<div>
-	  <a href="https://line.me/ti/p/%40iyl2622f"><img border="0" alt="�n�ͤH��" src="/ms/templates/Chinese/images/line_friend.jpg"></a>
+	  <a href="https://line.me/ti/p/%40iyl2622f"><img border="0" alt="好友人數" src="/ms/templates/Chinese/images/line_friend.jpg"></a>
 	</div>
 	<!--google ad-->
 	<div>
@@ -19,9 +19,9 @@
 		</script>
 	</div>
 </div>
-	
+<div style="height:100px;color:red;float:left;width:775px;"></div>	
 <div class="footerlayout">
-Copyright www.5ifafa.com. All Rights Reserved.
+Copyright www.5ifafa.com. All Rights Reserved. <a href="/ms/privacy-policy.html">隱私權聲明</a>
 </div>
 <!-- END MAIN CONTENT AREA -->
 </div> <!-- page -->
