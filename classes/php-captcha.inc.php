@@ -50,11 +50,11 @@
    define('CAPTCHA_SESSION_ID', 'php_captcha');
    define('CAPTCHA_WIDTH', 200); // max 500
    define('CAPTCHA_HEIGHT', 50); // max 200
-   define('CAPTCHA_NUM_CHARS', 5);
+   define('CAPTCHA_NUM_CHARS', 4);
    define('CAPTCHA_NUM_LINES', 70);
    define('CAPTCHA_CHAR_SHADOW', false);
    define('CAPTCHA_OWNER_TEXT', '');
-   define('CAPTCHA_CHAR_SET', ''); // defaults to A-Z
+   define('CAPTCHA_CHAR_SET', '0-9'); // defaults to A-Z
    define('CAPTCHA_CASE_INSENSITIVE', true);
    define('CAPTCHA_BACKGROUND_IMAGES', '');
    define('CAPTCHA_MIN_FONT_SIZE', 16);
